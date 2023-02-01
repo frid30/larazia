@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
-import requests
-import json
-import csv
+import requests,json,csv,time
 from pprint import pprint
 from datetime import datetime
 
@@ -70,10 +68,14 @@ class LARAZIA:
 
     def get_sms(self, number):
         L = self.larazia()
-        data = [data for data in L if data['number'] == number]
-        date = min([rec['date'] for rec in data])
-        if date:
-            rec = [rec for rec in data if rec['date'] == date][0]
-            return rec
-        else:
-            return None
+        while True:
+            try:
+                data = [data for data in L if data['number'] == number]
+                date = min([rec['date'] for rec in data])
+                if date:
+                    rec = [rec for rec in data if rec['date'] == date][0]
+                    return rec
+            except:
+                print('restart')
+                time.sleep()
+            
