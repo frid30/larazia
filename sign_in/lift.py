@@ -40,7 +40,7 @@ def fill(xpath, value):
 
 number = "447412992725"
 
-print('mario')
+number = "447413083728"
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     print('mgl')

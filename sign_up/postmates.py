@@ -6,6 +6,7 @@ import time
 from selenium.webdriver.common.by import By
 sys.path.append(r'C:\Users\boufe\OneDrive\Documents\ACCOUNTS\larazia')
 from getsms import LARAZIA
+from get_infos import Feed
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 options = Options()
@@ -14,11 +15,6 @@ options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 Getsms=LARAZIA()
-
-def click(n):
-    for i in range(n):
-        time.sleep(0.5)
-        searchButton.click()
 
 
 def fill(xpath, value):
@@ -50,4 +46,7 @@ if __name__ == '__main__':
     code = get_code(msg)
     print(code)
     fill('//*[@id="PHONE_SMS_OTP-0"]',code)
-    time.sleep(948)
+    time.sleep(5000)
+    fill('//*[@id="EMAIL_ADDRESS"]','waltermclovin777@gmail.com')
+    #click_on('//*[@id="forward-button"]')
+    #time.sleep(500)

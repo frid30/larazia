@@ -4,7 +4,7 @@ import json
 import csv
 import time
 from pprint import pprint
-from datetime import datetime
+from datetime import datetime,timedelta
 
 
 def divide_chunks(l, n):
@@ -26,8 +26,8 @@ class LARAZIA:
             'pageno': '1',
             'noclient': 'all',
             'nobillgroup': 'all',
-            'startdate': f'{datetime.now().strftime("%Y-%m-%d")} 00:00:00',
-            'enddate': f'{datetime.now().strftime("%Y-%m-%d")} 23:59:59',
+            'startdate': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            'enddate': (datetime.now() + timedelta(seconds=-15)).strftime("%Y-%m-%d %H:%M:%S"),
             'reportview': 'summary',
             'search_option': '1',
             'sitetoken': '',
@@ -75,13 +75,10 @@ class LARAZIA:
             try:
                 data = [data for data in L if data['number'] == number]
                 date = max([rec['date'] for rec in data])
+                print(date)
                 if date:
                     rec = [rec for rec in data if rec['date'] == date][0]
                     return rec
             except Exception as e:
-                print(e)
                 print('restart')
                 time.sleep(2)
-
-
-print(LARAZIA().get_sms('447413124565'))
