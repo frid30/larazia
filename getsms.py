@@ -4,7 +4,7 @@ import json
 import csv
 import time
 from pprint import pprint
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 
 
 def divide_chunks(l, n):
@@ -26,8 +26,8 @@ class LARAZIA:
             'pageno': '1',
             'noclient': 'all',
             'nobillgroup': 'all',
-            'startdate': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            'enddate': (datetime.now() + timedelta(seconds=-15)).strftime("%Y-%m-%d %H:%M:%S"),
+            'startdate': datetime.now().strftime("%Y-%m-%d 00:00:00"),
+            'enddate': datetime.now().strftime("%Y-%m-%d 23:59:59"),
             'reportview': 'summary',
             'search_option': '1',
             'sitetoken': '',
@@ -52,33 +52,38 @@ class LARAZIA:
         cookies = {
             'PHPSESSID': '32vtk8imrab5du57n2sdn93fe5',
         }
-        data = json.loads(requests.post(
-            'http://portal.exampletele.com/ajax_form_handler.php',
-            cookies=cookies,
-            headers=self.headers,
-            data=self.data,
-            verify=False,
-        ).text.replace('\\t', '').replace('\\n', ''))['form']
-        soup = BeautifulSoup(data, 'html.parser')
-        td = list(divide_chunks(list(filter(lambda x: x not in ('', 'Terminate SMS'), [
-            l.text for l in soup.findAll('td', attrs={'class': 'pad15T'})])), 4))
-        S = set()
-        for l in td:
-            number, date, msg = l[0], l[2], l[3]
-            data = {'number': number, 'date': date, 'msg': msg}
-            L.append(data)
-        return L
+        while True:
+            try:
+                data = json.loads(requests.post(
+                    'http://portal.exampletele.com/ajax_form_handler.php',
+                    cookies=cookies,
+                    headers=self.headers,
+                    data=self.data,
+                    verify=False,
+                ).text.replace('\\t', '').replace('\\n', ''))['form']
+                soup = BeautifulSoup(data, 'html.parser')
+                td = list(divide_chunks(list(filter(lambda x: x not in ('', 'Terminate SMS'), [
+                    l.text for l in soup.findAll('td', attrs={'class': 'pad15T'})])), 4))
+                S = set()
+                for l in td:
+                    number, date, msg = l[0], l[2], l[3]
+                    data = {'number': number, 'date': date, 'msg': msg}
+                    L.append(data)
+                return L
+            except Exception as e:
+                print(e)
+                time.sleep(3)
 
     def get_sms(self, number):
         L = self.larazia()
         while True:
             try:
-                data = [data for data in L if data['number'] == number]
-                date = max([rec['date'] for rec in data])
-                print(date)
-                if date:
-                    rec = [rec for rec in data if rec['date'] == date][0]
-                    return rec
+                rec = [data for data in L if data['number'] == number and data['date'] > (
+                    datetime.now() + timedelta(hours=-1, minutes=-45)).strftime("%Y-%m-%d %H:%M:%S")][0]
+                return rec
             except Exception as e:
                 print('restart')
                 time.sleep(2)
+
+
+print(LARAZIA().get_sms('447412985739'))
