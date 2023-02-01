@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
-import requests,json,csv,time
+import requests
+import json
+import csv
+import time
 from pprint import pprint
 from datetime import datetime
 
@@ -71,6 +74,7 @@ class LARAZIA:
         while True:
             try:
                 data = [data for data in L if data['number'] == number]
+                print(data)
                 date = max([rec['date'] for rec in data])
                 if date:
                     rec = [rec for rec in data if rec['date'] == date][0]
@@ -78,4 +82,5 @@ class LARAZIA:
             except:
                 print('restart')
                 time.sleep(2)
-            
+
+

@@ -43,7 +43,7 @@ if __name__ == '__main__':
     driver.maximize_window()
     driver.get("https://postmates.com/")
     click_on('//*[@id="wrapper"]/header/div/div/div/div/a[3]')
-    number = '447413069667'
+    number = '447413124565'
     fill('//*[@id="PHONE_NUMBER"]', number[2:])
     click_on('//*[@id="wrapper"]/div[1]/div/section[2]/button[1]/div/div[2]')
     msg = Getsms.get_sms(number)['msg']
