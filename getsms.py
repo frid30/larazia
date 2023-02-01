@@ -44,16 +44,24 @@ class LARAZIA:
     def larazia(self):
         L = []
         cookies = {
-            'PHPSESSID': '3aadshi34ge5hgovaldgkm47s0',
+            'PHPSESSID': '32vtk8imrab5du57n2sdn93fe5',
         }
         
+        # data = json.loads(requests.post(
+        #     'http://portal.exampletele.com/ajax_form_handler.php',
+        #     cookies=cookies,
+        #     headers=self.headers,
+        #     data=self.data,
+        #     verify=False,
+        # ).text.replace('\\t', '').replace('\\n', ''))['form']
         data = json.loads(requests.post(
             'http://portal.exampletele.com/ajax_form_handler.php',
             cookies=cookies,
             headers=self.headers,
             data=self.data,
             verify=False,
-        ).text.replace('\\t', '').replace('\\n', ''))['form']
+        )).text
+        print(data)
         soup = BeautifulSoup(data, 'html.parser')
         td = list(divide_chunks(list(filter(lambda x: x not in ('', 'Terminate SMS'), [
             l.text for l in soup.findAll('td', attrs={'class': 'pad15T'})])), 4))
@@ -69,3 +77,4 @@ class LARAZIA:
         date = min([rec['date'] for rec in data])
         rec = [rec for rec in data if rec['date'] == date][0]
         return rec
+LARAZIA().get_sms('447413069667')
