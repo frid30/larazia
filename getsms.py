@@ -22,8 +22,8 @@ class LARAZIA:
             'pageno': '1',
             'noclient': 'all',
             'nobillgroup': 'all',
-            'startdate': f'{datetime.now().strftime("%m/%d/%Y")} 00:00:00',
-            'enddate': f'{datetime.now().strftime("%m/%d/%Y")} 23:59:59',
+            'startdate': f'{datetime.now().strftime("%Y-%m-%d")} 00:00:00',
+            'enddate': f'{datetime.now().strftime("%Y-%m-%d")} 23:59:59',
             'reportview': 'summary',
             'search_option': '1',
             'sitetoken': '',
@@ -40,7 +40,7 @@ class LARAZIA:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
             'X-Requested-With': 'XMLHttpRequest',
         }
-        self.numbers = [number for number in csv.reader(open('numbers.txt','r'))]
+        self.numbers = [number[0] for number in csv.reader(open('numbers.txt','r'))]
     def larazia(self):
         L = []
         cookies = {
@@ -74,7 +74,10 @@ class LARAZIA:
     def get_sms(self,number):
         L = self.larazia()
         data = [data for data in L if data['number'] == number]
+        print(data)
         date = min([rec['date'] for rec in data])
         rec = [rec for rec in data if rec['date'] == date][0]
         return rec
 LARAZIA().get_sms('447413069667')
+
+print(LARAZIA().get_sms('447413069667'))
