@@ -12,6 +12,10 @@ def divide_chunks(l, n):
         yield l[i:i + n]
 
 
+now = datetime.now()
+then = now + timedelta(hours=-1, minutes=-1)
+
+
 class LARAZIA:
     def __init__(self) -> None:
         self.data = {
@@ -26,8 +30,8 @@ class LARAZIA:
             'pageno': '1',
             'noclient': 'all',
             'nobillgroup': 'all',
-            'startdate': datetime.now().strftime("%Y-%m-%d 00:00:00"),
-            'enddate': datetime.now().strftime("%Y-%m-%d 23:59:59"),
+            'startdate': (datetime.now()+timedelta(hours=-2)).strftime("%Y-%m-%d %H:%M:%S"),
+            'enddate': (datetime.now()).strftime("%Y-%m-%d %H:%M:%S"),
             'reportview': 'summary',
             'search_option': '1',
             'sitetoken': '',
@@ -76,10 +80,11 @@ class LARAZIA:
 
     def get_sms(self, number):
         L = self.larazia()
+        pprint(L)
         while True:
             try:
-                rec = [data for data in L if data['number'] == number and data['date'] > (
-                    datetime.now() + timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")][-1]
+                rec = [data for data in L if data['number'] ==
+                       number and data['date'] == max([data['date'] for data in L])]
                 print(rec)
                 return rec
             except Exception as e:
@@ -87,3 +92,4 @@ class LARAZIA:
                 time.sleep(2)
 
 
+LARAZIA().get_sms("447412989377")
