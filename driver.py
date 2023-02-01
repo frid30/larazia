@@ -39,5 +39,6 @@ def fill(xpath, value):
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.maximize_window()
-    url = "https://accounts.zoho.com/register?mode=01&servicename=AaaServer&serviceurl=https%3A%2F%2Faccounts.zoho.com%2Foauth%2Fv2%2Fauth%3Fresponse_type%3Dcode%26client_id%3D1000.IEWS07JRYV5H025097LOCFU0XVAF2W%26scope%3Demail%252CAAAServer.profile.READ%26redirect_uri%3Dhttps%253A%252F%252Faccounts.zohoportal.com%252Faccounts%252Fextoauth%252Fclientcallback%26state%3D10000009116.OP-opZzgXxWGntHERY23zSuh2HoX"
+    url = "https://fr.aliexpress.com/w/wholesale-sim-gsm-gateway.html"
     driver.get(url)
+    time.sleep(300000)
