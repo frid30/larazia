@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
-import requests,json
+import requests,json,csv
 from pprint import pprint
 from datetime import datetime
+
 
 def divide_chunks(l, n):
     for i in range(0, len(l), n):
@@ -39,6 +40,7 @@ class LARAZIA:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
             'X-Requested-With': 'XMLHttpRequest',
         }
+        self.numbers = [number for number in csv.reader(open('numbers.txt','r'))]
     def larazia(self):
         L = []
         cookies = {
