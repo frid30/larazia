@@ -4,7 +4,8 @@ import undetected_chromedriver as uc
 from selenium.webdriver.chrome.service import Service as ChromeService
 import time
 from selenium.webdriver.common.by import By
-sys.path.append(r'C:\Users\boufe\OneDrive\Documents\LARAZIA')
+sys.path.append(
+    r'C:\Users\boufe\OneDrive\Documents\ACCOUNTS\larazia\getsms.py')
 from getsms import LARAZIA
 from get_infos import Feed
 from webdriver_manager.chrome import ChromeDriverManager
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     driver.maximize_window()
     driver.get("https://postmates.com/")
     click_on('//*[@id="wrapper"]/header/div/div/div/div/a[3]')
-    number = '447412992725'
+    number = '447412985739'
     fill('//*[@id="PHONE_NUMBER"]', number[2:])
     click_on('//*[@id="wrapper"]/div[1]/div/section[2]/button[1]/div/div[2]')
     time.sleep(10000)

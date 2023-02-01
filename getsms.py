@@ -79,9 +79,11 @@ class LARAZIA:
         while True:
             try:
                 rec = [data for data in L if data['number'] == number and data['date'] > (
-                    datetime.now() + timedelta(hours=-1, minutes=-30)).strftime("%Y-%m-%d %H:%M:%S")][0]
+                    datetime.now() + timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")][-1]
+                print(rec)
                 return rec
             except Exception as e:
                 print('restart')
                 time.sleep(2)
+
 
