@@ -49,3 +49,5 @@ if __name__ == '__main__':
     msg = Getsms.get_sms(number)['msg']
     code = get_code(msg)
     print(code)
+    fill('//*[@id="PHONE_SMS_OTP-0"]',code)
+    time.sleep(948)
