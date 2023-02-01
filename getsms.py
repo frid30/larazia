@@ -74,12 +74,9 @@ class LARAZIA:
         while True:
             try:
                 data = [data for data in L if data['number'] == number]
-                print(data)
-                date = [rec['date'] for rec in data]
+                date = max([rec['date'] for rec in data])
                 if date:
-                    print('ya')
                     rec = [rec for rec in data if rec['date'] == date][0]
-                    print(rec)
                     return rec
             except Exception as e:
                 print(e)
@@ -87,4 +84,4 @@ class LARAZIA:
                 time.sleep(2)
 
 
-LARAZIA().get_sms('447413124565')
+print(LARAZIA().get_sms('447413124565'))
