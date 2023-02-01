@@ -71,11 +71,11 @@ class LARAZIA:
         while True:
             try:
                 data = [data for data in L if data['number'] == number]
-                date = min([rec['date'] for rec in data])
+                date = max([rec['date'] for rec in data])
                 if date:
                     rec = [rec for rec in data if rec['date'] == date][0]
                     return rec
             except:
                 print('restart')
-                time.sleep()
+                time.sleep(2)
             

@@ -32,8 +32,10 @@ def click_on(xpath):
     driver.implicitly_wait(1000)
     driver.find_element_by_xpath(xpath).click()
     time.sleep(1)
-def get_code():
 
+def get_code(msg):
+    code = msg.split('.')[0].split(' : ')[1]
+    return code
 
 
 if __name__ == '__main__':
@@ -41,11 +43,9 @@ if __name__ == '__main__':
     driver.maximize_window()
     driver.get("https://postmates.com/")
     click_on('//*[@id="wrapper"]/header/div/div/div/div/a[3]')
-    fill('//*[@id="PHONE_NUMBER"]', '7412999637')
+    number = '447413069667'
+    fill('//*[@id="PHONE_NUMBER"]', number[2:])
     click_on('//*[@id="wrapper"]/div[1]/div/section[2]/button[1]/div/div[2]')
-    msg = None
-    time.sleep(4)
-    while not msg:
-        
-    msg = LARAZIA().get_sms('447412999637')['msg']
-    time.sleep(1000)
+    msg = Getsms.get_sms(number)['msg']
+    code = get_code(msg)
+    print(code)
