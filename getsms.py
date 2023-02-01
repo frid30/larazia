@@ -66,9 +66,9 @@ class LARAZIA:
     def get_sms(self,number):
         L = self.larazia()
         data = [data for data in L if data['number'] == number]
-        print(data)
         date = min([rec['date'] for rec in data])
         rec = [rec for rec in data if rec['date'] == date][0]
         return rec
 
-print(LARAZIA().get_sms('447413069667'))
+
+print(LARAZIA().get_sms('447412985739'))
