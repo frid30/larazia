@@ -88,4 +88,4 @@ class LARAZIA:
                 time.sleep(2)
 
 
-LARAZIA().get_sms("447413097673")
+# LARAZIA().get_sms("447413097673")
