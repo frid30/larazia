@@ -46,7 +46,6 @@ if __name__ == '__main__':
     click_on("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[10]/span/button/span/span")
     time.sleep(4)
     smscode = get_code(get_thesms.get_sms(number)["msg"])
-
     prename = "Ouide"
     name = "Jasoo"
     email = "muaithai75@gmail.com"
