@@ -40,24 +40,27 @@ def get_code(msg):
     code = msg.split(' ')[0]
     return code
 number = "447413097673"
-
+email = "muaithai75@gmail.com"
+first_name = Feed().firstname()
+name = Feed().name()
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.maximize_window()
-    driver.get("https://www.bumrungrad.com/")
-    time.sleep(30000)
-    click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/a")
-    click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/div/a[2]")
-    click_on("/html/body/form/div[9]/div/div/div[2]/div[3]/div/a[2]")
-    
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/div")
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/ul/li[230]/span[1]")
-    fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/input",number.replace("44",""))
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[1]")
-    time.sleep(4)
-    sms_code = get_code(Getsms.get_sms(number)["msg"])
-    fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[2]/div/input",sms_code)
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[2]")
-    click_on("/html/body/form/div[5]/div/div[2]/div/nav/div/div[1]/div/ul/li[6]/a")
+    driver.get("https://bolt.eu/")
+    click_on("/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
+    click_on("/html/body/div[1]/div[1]/div/div/div/div/button[2]")
+    click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/input[2]")
+    time.sleep(2)
+    fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",number.replace("44",""))
+    time.sleep(2)
 
-    # time.sleep(30000)
+    click_on("/html/body/div[2]/div/div/div[2]/form/button")
+    time.sleep(7)
+    sms_code = get_code(Getsms.get_sms(number)["msg"])
+    time.sleep(3)
+    click_on("/html/body/div[2]/div/div/div[1]/div[1]/button")
+    click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/div[1]/a[1]")
+    click_on("/html/body/div[2]/div/div[2]/div[2]/form/div[3]/label[2]/span")
+
+
+    time.sleep(3000)

@@ -83,7 +83,9 @@ class LARAZIA:
                 print(rec)
                 return rec
             except Exception as e:
+                print(e)
                 print('restart')
                 time.sleep(2)
 
 
+LARAZIA().get_sms("447413097673")

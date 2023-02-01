@@ -37,27 +37,28 @@ def fill(xpath, value):
         pass
 
 def get_code(msg):
-    code = msg.split(' ')[0]
+    code = msg.split(' ')[2]
     return code
 number = "447413097673"
-
+first_name = Feed().firstname()
+name = Feed().name()
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.maximize_window()
-    driver.get("https://www.bumrungrad.com/")
-    time.sleep(30000)
-    click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/a")
-    click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/div/a[2]")
-    click_on("/html/body/form/div[9]/div/div/div[2]/div[3]/div/a[2]")
+    driver.get("https://www.icq.com/")
+    click_on("/html/body/div/header/div/ul/li[2]/a")
+    click_on("/html/body/div[2]/div/div/div[1]/div/div/div[2]/div/button")
+    click_on("/html/body/div[2]/div/div[1]/div/form/div/div")
+    click_on("/html/body/div[3]/div/div/div/div[2]/div/div[2]/div[2]/div/div[1]/div/div[219]")
+    fill("/html/body/div[2]/div/div[1]/div/form/div/input",number.replace("44",""))
+    click_on("/html/body/div[2]/div/div[1]/div/form/button")
+    time.sleep(7)
     
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/div")
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/ul/li[230]/span[1]")
-    fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/input",number.replace("44",""))
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[1]")
-    time.sleep(4)
     sms_code = get_code(Getsms.get_sms(number)["msg"])
-    fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[2]/div/input",sms_code)
-    click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[2]")
-    click_on("/html/body/form/div[5]/div/div[2]/div/nav/div/div[1]/div/ul/li[6]/a")
-
-    # time.sleep(30000)
+    fill("/html/body/div[2]/div/div[1]/div/form/input[1]",sms_code)
+    fill("/html/body/div[2]/div[2]/div/div/div/input[1]",first_name)
+    fill("/html/body/div[2]/div[2]/div/div/div/input[2]",name)
+    click_on("/html/body/div[2]/div[2]/div/div/div/button")
+    click_on("/html/body/div[2]/div[3]/div/div[1]/span/div/div[1]")
+    click_on("/html/body/div[3]/div/div[1]/div/div/div/div[4]")
+    time.sleep(30000)
