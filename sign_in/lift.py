@@ -32,7 +32,6 @@ def fill(xpath, value):
     time.sleep(1)
 
 number = "447413083728"
-print('mario')
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     print('mgl')
@@ -46,9 +45,7 @@ if __name__ == '__main__':
 
     click_on("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[10]/span/button/span/span")
     time.sleep(4)
-    smscode = None
-    while not smscode :
-        smscode = get_code(get_thesms.get_sms(number)["msg"])
+    smscode = get_code(get_thesms.get_sms(number)["msg"])
 
     prename = "Ouide"
     name = "Jasoo"
