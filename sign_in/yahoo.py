@@ -1,7 +1,6 @@
 
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from get_infos import Feed
 import os,time,sys
 import random
 import undetected_chromedriver as uc
@@ -12,25 +11,7 @@ path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 
 
-def click_on(self, xpath):
-    try:
-        driver.implicitly_wait(6)
-        driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
-    except:
-        pass
-def fill(self, xpath, value):
-    try:
-        driver.implicitly_wait(6)
-        searchButton = driver.find_element(By.XPATH, xpath)
-        searchButton.send_keys(value)
-        time.sleep(1)
-    except:
-        pass
 number = "447413097673"
-first_name = Feed().firstname()
-name = Feed().name()
-password = Feed().password()
 
 if __name__=='__main__':
     options = Options()
@@ -40,7 +21,7 @@ if __name__=='__main__':
     options.add_argument("--no-sandbox")
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://www.google.com")
-
+    time.sleep(3000000)
     click_on("/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[4]/p/a")
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[1]/div/div[1]/input",name)
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[1]/div/div[2]/input",first_name)
