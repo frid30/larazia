@@ -17,8 +17,7 @@ p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
 sys.path.append(p_2)
 from Sms import Larazia,Feed,Navigate
-click_on = Navigate().click_on
-fill = Navigate().fill
+
 first_name = Feed().firstname()
 name = Feed().name()
 number = "447413097673"
@@ -35,6 +34,8 @@ class Bolt:
     def bolt(self,driver):
         driver.maximize_window()
         driver.get("https://bolt.eu/")
+        click_on = Navigate().click_on
+        fill = Navigate().fill
         click_on("/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
         click_on("/html/body/div[1]/div[1]/div/div/div/div/button[2]")
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/input[2]")

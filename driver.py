@@ -3,14 +3,12 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from get_infos import Feed
 import os,time,sys
-from LARAZIA import LARAZIA
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
-from LARAZIA import LARAZIA
 
 class Navigate:
     def click_on(self, xpath):
@@ -36,3 +34,5 @@ if __name__=='__main__':
     options.add_argument("--start-maximized")
     options.add_argument("--no-sandbox")
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver.get("https://www.google.com")
+    time.sleep(3000000)
