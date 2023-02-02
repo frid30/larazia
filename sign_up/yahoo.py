@@ -17,22 +17,26 @@ path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 
 
-def click_on(self, xpath):
+def click_on( xpath):
     try:
-        driver.implicitly_wait(6)
+        driver.implicitly_wait(10)
         driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
+        time.sleep(2)
     except:
         pass
-def fill(self, xpath, value):
+def fill(xpath, value):
     try:
-        driver.implicitly_wait(6)
+        driver.implicitly_wait(10)
         searchButton = driver.find_element(By.XPATH, xpath)
         searchButton.send_keys(value)
-        time.sleep(1)
+        time.sleep(2)
     except:
         pass
-number = "447413097673"
+
+def get_code(msg):
+    return msg.split(" ")[0]
+
+number = "447413131560"
 first_name = Feed().firstname()
 name = Feed().name()
 password = Feed().password()
@@ -45,17 +49,31 @@ if __name__=='__main__':
     options.add_argument("--no-sandbox")
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://www.google.com")
+    driver.get("https://www.yahoo.com")
 
+    click_on("/html/body/div/div/div/div/form/div[2]/div[2]/button")
+    click_on("/html/body/header/div[1]/div/div/div/div/div[2]/div/div[3]/div[1]/div/a")
     click_on("/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[4]/p/a")
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[1]/div/div[1]/input",name)
+    time.sleep(2)
+
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[1]/div/div[2]/input",first_name)
-    fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[2]/input",f"{name}.{first_name}{random.randint(4,300)}")
+    time.sleep(1)
+
+    fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[2]/input",f"{name}.{first_name}{random.randint(10000,458400000)}")
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[3]/input",password)
+
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[4]/fieldset/input",str(random.randint(1960,2000)))
     click_on('/html/body/div[1]/div[2]/div[1]/div[2]/form/div[6]/button')
+    time.sleep(3)
+
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset/input",number.replace("44",""))
+    time.sleep(6)
+
     click_on("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[3]/button")
-    sms_code = ()
+    input()
+    time.sleep(6)
+    sms_code = get_code(Larazia().get_sms(number)["msg"])
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[1]/input",sms_code)
     click_on("/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[2]/button")
     click_on("/html/body/div[1]/div[2]/div[1]/div[2]/form/button")
