@@ -82,8 +82,7 @@ class Larazia:
         while True:
             try:
                 rec = [data for data in L if data['number'] == number and data['date'] > (
-                    datetime.now() + timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")]
-                print(rec)
+                    datetime.now()+timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")]
                 return rec
             except Exception as e:
                 print(e)
@@ -130,4 +129,4 @@ class Email:
 #            time.sleep(1)
 #        except:
 #            pass
-Larazia().get_sms
+pprint(Larazia().get_sms('447413110936'))
