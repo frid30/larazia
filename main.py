@@ -41,4 +41,6 @@ if __name__=='__main__':
     options.add_argument("--no-sandbox")
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     Bolt().bolt(driver)
-    
+    Icq().icq(driver)
+    Bumrungrad().bumrungrad(driver)
+    Epal().epal(driver)    
