@@ -54,20 +54,23 @@ if __name__=='__main__':
     click_on("/html/body/header/div[1]/div/div/div/div/div[2]/div/div[3]/div[1]/div/a")
     click_on("/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[4]/p/a")
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[1]/div/div[1]/input",name)
-    time.sleep(6)
+    time.sleep(2)
 
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[1]/div/div[2]/input",first_name)
     time.sleep(1)
 
-    fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[2]/input",f"{name}.{first_name}{random.randint(4,300)}")
+    fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[2]/input",f"{name}.{first_name}{random.randint(10000,458400000)}")
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[3]/input",password)
 
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[4]/fieldset/input",str(random.randint(1960,2000)))
     click_on('/html/body/div[1]/div[2]/div[1]/div[2]/form/div[6]/button')
+    time.sleep(3)
 
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset/input",number.replace("44",""))
+    time.sleep(6)
 
     click_on("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[3]/button")
+    input()
     time.sleep(6)
     sms_code = get_code(Larazia().get_sms(number)["msg"])
     fill("/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[1]/input",sms_code)
