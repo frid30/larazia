@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 import time
 from selenium.webdriver.common.by import By
 sys.path.append(r'C:\Users\kamel\Desktop\pumjin')
-from LARAZIA import LARAZIA
+# from LARAZIA import LARAZIA
 from get_infos import Feed
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -14,7 +14,7 @@ options.headless = False
 options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
-Getsms=LARAZIA()
+# Getsms=LARAZIA()
 
 
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     click_on("/html/body/div[2]/div/div/div[2]/form/button")
     time.sleep(7)
-    sms_code = get_code(Getsms.get_sms(number)["msg"])
+    # sms_code = get_code(Getsms.get_sms(number)["msg"])
     time.sleep(3)
     click_on("/html/body/div[2]/div/div/div[1]/div[1]/button")
     click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/div[1]/a[1]")
