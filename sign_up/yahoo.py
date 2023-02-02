@@ -1,25 +1,29 @@
 
+import sys,os,time
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from get_infos import Feed
-import os,time,sys
-import random
+import os,time,sys,random
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
+
+p_1 = (os.path.dirname(os.path.abspath(__file__)))
+p_2 = os.path.dirname(p_1)
+sys.path.append(p_2)
+from Sms import Larazia, Feed
 
 path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 
 
-def click_on(xpath):
+def click_on(self, xpath):
     try:
         driver.implicitly_wait(6)
         driver.find_element(By.XPATH, xpath).click()
         time.sleep(1)
     except:
         pass
-def fill(xpath, value):
+def fill(self, xpath, value):
     try:
         driver.implicitly_wait(6)
         searchButton = driver.find_element(By.XPATH, xpath)
