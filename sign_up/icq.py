@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 import time
 from selenium.webdriver.common.by import By
 sys.path.append(r'C:\Users\kamel\Desktop\pumjin')
-from getsms import LARAZIA
+from LARAZIA import LARAZIA
 from get_infos import Feed
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options

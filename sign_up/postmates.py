@@ -5,8 +5,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 import time
 from selenium.webdriver.common.by import By
 sys.path.append(
-    r'C:\Users\boufe\OneDrive\Documents\ACCOUNTS\larazia\getsms.py')
-from getsms import LARAZIA
+    r'C:\Users\boufe\OneDrive\Documents\LARAZIA')
+from LARAZIA import LARAZIA
 from get_infos import Feed
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -40,15 +40,14 @@ if __name__ == '__main__':
     driver.maximize_window()
     driver.get("https://postmates.com/")
     click_on('//*[@id="wrapper"]/header/div/div/div/div/a[3]')
-    number = '447412985739'
+    number = '447412989377'
     fill('//*[@id="PHONE_NUMBER"]', number[2:])
     click_on('//*[@id="wrapper"]/div[1]/div/section[2]/button[1]/div/div[2]')
-    time.sleep(10000)
-    #msg = Getsms.get_sms(number)['msg']
-    #code = get_code(msg)
-    #print(code)
-    #fill('//*[@id="PHONE_SMS_OTP-0"]',code)
-    #time.sleep(5000)
+    msg = Getsms.get_sms(number)['msg']
+    code = get_code(msg)
+    print(code)
+    fill('//*[@id="PHONE_SMS_OTP-0"]',code)
+    time.sleep(5000)
     #fill('//*[@id="EMAIL_ADDRESS"]','waltermclovin777@gmail.com')
     #click_on('//*[@id="forward-button"]')
     #time.sleep(500)

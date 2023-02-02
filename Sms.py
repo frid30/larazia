@@ -5,18 +5,13 @@ import csv
 import time
 from pprint import pprint
 from datetime import datetime, timedelta
+from faker import Faker
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
 
-def divide_chunks(l, n):
-    for i in range(0, len(l), n):
-        yield l[i:i + n]
-
-
-now = datetime.now()
-then = now + timedelta(hours=-1, minutes=-1)
-
-
-class LARAZIA:
+class Larazia:
     def __init__(self) -> None:
         self.data = {
             'sub': 'reporting',
@@ -30,8 +25,8 @@ class LARAZIA:
             'pageno': '1',
             'noclient': 'all',
             'nobillgroup': 'all',
-            'startdate': (datetime.now()+timedelta(hours=-2)).strftime("%Y-%m-%d %H:%M:%S"),
-            'enddate': (datetime.now()).strftime("%Y-%m-%d %H:%M:%S"),
+            'startdate': datetime.now().strftime("%Y-%m-%d 00:00:00"),
+            'enddate': datetime.now().strftime("%Y-%m-%d 23:59:59"),
             'reportview': 'summary',
             'search_option': '1',
             'sitetoken': '',
@@ -51,6 +46,10 @@ class LARAZIA:
         self.numbers = [number[0]
                         for number in csv.reader(open('numbers.txt', 'r'))]
 
+    def divide_chunks(self, l, n):
+        for i in range(0, len(l), n):
+            yield l[i:i + n]
+
     def larazia(self):
         L = []
         cookies = {
@@ -66,7 +65,7 @@ class LARAZIA:
                     verify=False,
                 ).text.replace('\\t', '').replace('\\n', ''))['form']
                 soup = BeautifulSoup(data, 'html.parser')
-                td = list(divide_chunks(list(filter(lambda x: x not in ('', 'Terminate SMS'), [
+                td = list(self.divide_chunks(list(filter(lambda x: x not in ('', 'Terminate SMS'), [
                     l.text for l in soup.findAll('td', attrs={'class': 'pad15T'})])), 4))
                 S = set()
                 for l in td:
@@ -80,15 +79,49 @@ class LARAZIA:
 
     def get_sms(self, number):
         L = self.larazia()
-        pprint(L)
         while True:
             try:
-                rec = [data for data in L if data['number'] ==
-                       number and data['date'] == max([data['date'] for data in L])]
+                rec = [data for data in L if data['number'] == number and data['date'] > (
+                    datetime.now() + timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")][-1]
                 print(rec)
                 return rec
             except Exception as e:
                 print(e)
                 print('restart')
                 time.sleep(2)
+class Feed:
+    def __init__(self) -> None:
+        pass
+    def name(self):
+        return Faker().first_name()
+    def password(self):
+        return Faker().password()
+    def firstname(self):
+        return Faker().first_name()
 
+
+class Email:
+    def __init__(self) -> None:
+        pass
+
+    def get_email(self):
+        return
+
+
+class Navigate():
+    def click_on(self, xpath):
+        try:
+            driver.implicitly_wait(6)
+            driver.find_element(By.XPATH, xpath).click()
+            time.sleep(1)
+        except:
+            pass
+
+    def fill(self, xpath, value):
+        try:
+            driver.implicitly_wait(6)
+            searchButton = driver.find_element(By.XPATH, xpath)
+            searchButton.send_keys(value)
+            time.sleep(1)
+        except:
+            pass
