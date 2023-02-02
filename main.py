@@ -9,6 +9,7 @@ from sign_up.bolt import Bolt
 from sign_up.epal import Epal
 from sign_up.icq import Icq
 from sign_up.bumrungrad import Bumrungrad
+from sign_up.yahoo import Yahoo
 import os,sys,time
 path = os.path.join(os.path.dirname(
 os.path.abspath(__file__)), 'sign_up')
@@ -43,4 +44,5 @@ if __name__=='__main__':
     Bolt().bolt(driver)
     Icq().icq(driver)
     Bumrungrad().bumrungrad(driver)
-    Epal().epal(driver)    
+    Epal().epal(driver)  
+    Yahoo().yahoo(driver)  
