@@ -47,24 +47,27 @@ class Icq():
         return code
     def icq(self,driver):
         driver.maximize_window()
-        driver.get("https://www.icq.com/")
-        click_on("/html/body/div/header/div/ul/li[2]/a")
-        click_on("/html/body/div[2]/div/div/div[1]/div/div/div[2]/div/button")
-        click_on("/html/body/div[2]/div/div[1]/div/form/div/div")
-        click_on(
-            "/html/body/div[3]/div/div/div/div[2]/div/div[2]/div[2]/div/div[1]/div/div[219]")
-        fill("/html/body/div[2]/div/div[1]/div/form/div/input",
-            number.replace("44", ""))
-        click_on("/html/body/div[2]/div/div[1]/div/form/button")
-        time.sleep(7)
-        sms_code = self.get_code(Larazia().get_sms(number)["msg"])
-        fill("/html/body/div[2]/div/div[1]/div/form/input[1]", sms_code)
-        fill("/html/body/div[2]/div[2]/div/div/div/input[1]", first_name)
-        fill("/html/body/div[2]/div[2]/div/div/div/input[2]", name)
-        click_on("/html/body/div[2]/div[2]/div/div/div/button")
-        click_on("/html/body/div[2]/div[3]/div/div[1]/span/div/div[1]")
-        click_on("/html/body/div[3]/div/div[1]/div/div/div/div[4]")
-        time.sleep(30000)
+        driver.get('https://www.icq.com/')
+        print('icq')
+        driver.switch_to.new_window('tab')
+        time.sleep(4)
+        #click_on("/html/body/div/header/div/ul/li[2]/a")
+        #click_on("/html/body/div[2]/div/div/div[1]/div/div/div[2]/div/button")
+        #click_on("/html/body/div[2]/div/div[1]/div/form/div/div")
+        #click_on(
+        #    "/html/body/div[3]/div/div/div/div[2]/div/div[2]/div[2]/div/div[1]/div/div[219]")
+        #fill("/html/body/div[2]/div/div[1]/div/form/div/input",
+        #    number.replace("44", ""))
+        #click_on("/html/body/div[2]/div/div[1]/div/form/button")
+        #time.sleep(7)
+        #sms_code = self.get_code(Larazia().get_sms(number)["msg"])
+        #fill("/html/body/div[2]/div/div[1]/div/form/input[1]", sms_code)
+        #fill("/html/body/div[2]/div[2]/div/div/div/input[1]", first_name)
+        #fill("/html/body/div[2]/div[2]/div/div/div/input[2]", name)
+        #click_on("/html/body/div[2]/div[2]/div/div/div/button")
+        #click_on("/html/body/div[2]/div[3]/div/div[1]/span/div/div[1]")
+        #click_on("/html/body/div[3]/div/div[1]/div/div/div/div[4]")
+        #time.sleep(30000)
 
 
 if __name__ == '__main__':

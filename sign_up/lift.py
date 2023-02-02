@@ -11,8 +11,7 @@ from LARAZIA import LARAZIA
 SMS = LARAZIA()
 
 
-def get_code(msg):
-    return msg.split(" ")[-1]
+
 
 options = Options()
 options.headless = False
@@ -34,6 +33,9 @@ def fill(xpath, value):
 
 number = "447412992725"
 
+
+def get_code(msg):
+    return msg.split(" ")[-1]
 print('mario')
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
