@@ -82,20 +82,25 @@ class Larazia:
         while True:
             try:
                 rec = [data for data in L if data['number'] == number and data['date'] > (
-                    datetime.now() + timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")][-1]
+                    datetime.now() + timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")]
                 print(rec)
                 return rec
             except Exception as e:
                 print(e)
                 print('restart')
                 time.sleep(2)
+
+
 class Feed:
     def __init__(self) -> None:
         pass
+
     def name(self):
         return Faker().first_name()
+
     def password(self):
         return Faker().password()
+
     def firstname(self):
         return Faker().first_name()
 
@@ -108,7 +113,7 @@ class Email:
         return
 
 
-#class Navigate():
+# class Navigate():
 #    def click_on(self, xpath):
 #        try:
 #            driver.implicitly_wait(6)
@@ -125,3 +130,4 @@ class Email:
 #            time.sleep(1)
 #        except:
 #            pass
+Larazia().get_sms
