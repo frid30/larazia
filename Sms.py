@@ -108,20 +108,20 @@ class Email:
         return
 
 
-class Navigate():
-    def click_on(self, xpath):
-        try:
-            driver.implicitly_wait(6)
-            driver.find_element(By.XPATH, xpath).click()
-            time.sleep(1)
-        except:
-            pass
-
-    def fill(self, xpath, value):
-        try:
-            driver.implicitly_wait(6)
-            searchButton = driver.find_element(By.XPATH, xpath)
-            searchButton.send_keys(value)
-            time.sleep(1)
-        except:
-            pass
+#class Navigate():
+#    def click_on(self, xpath):
+#        try:
+#            driver.implicitly_wait(6)
+#            driver.find_element(By.XPATH, xpath).click()
+#            time.sleep(1)
+#        except:
+#            pass
+#
+#    def fill(self, xpath, value):
+#        try:
+#            driver.implicitly_wait(6)
+#            searchButton = driver.find_element(By.XPATH, xpath)
+#            searchButton.send_keys(value)
+#            time.sleep(1)
+#        except:
+#            pass

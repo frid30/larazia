@@ -16,22 +16,37 @@ options.add_argument("--no-sandbox")
 p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
 sys.path.append(p_2)
-from Sms import Larazia,Feed,Navigate
-click_on = Navigate().click_on
-fill = Navigate().fill
+from Sms import Larazia,Feed
+
 first_name = Feed().firstname()
 name = Feed().name()
 number = "447413097673"
 email = "muaithai75@gmail.com"
 
 
+def click_on(xpath):
+        try:
+            driver.implicitly_wait(6)
+            driver.find_element(By.XPATH, xpath).click()
+            time.sleep(1)
+        except:
+            pass
+
+def fill(xpath, value):
+    try:
+        driver.implicitly_wait(6)
+        searchButton = driver.find_element(By.XPATH, xpath)
+        searchButton.send_keys(value)
+        time.sleep(1)
+    except:
+        pass
+    
 class Bolt:
     def __init__(self) -> None:
         pass
     def get_code(self,msg):
         code = msg.split(' ')[0]
         return code
-    
     def bolt(self,driver):
         driver.maximize_window()
         driver.get("https://bolt.eu/")
@@ -58,6 +73,6 @@ class Bolt:
         click_on("/html/body/div[2]/div/div[2]/div[2]/form/div[3]/label[2]/span")
         time.sleep(3000)
 
-
-driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-Bolt().bolt(driver)
+if __name__=='__main__':
+    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    Bolt().bolt(driver)
