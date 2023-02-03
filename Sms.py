@@ -9,6 +9,10 @@ from faker import Faker
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+
+from selenium.webdriver.common.keys import Keys
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class Larazia:
@@ -76,11 +80,10 @@ class Larazia:
             except Exception as e:
                 print(e)
                 time.sleep(3)
-
     def get_sms(self, number):
-        L = self.larazia()
         while True:
             try:
+                L = self.larazia()
                 rec = [data for data in L if data['number'] == number and data['date'] > (
                     datetime.now()+timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")]
                 return rec
@@ -88,8 +91,6 @@ class Larazia:
                 print(e)
                 print('restart')
                 time.sleep(2)
-
-
 class Feed:
     def __init__(self) -> None:
         pass
@@ -129,4 +130,4 @@ class Email:
 #            time.sleep(1)
 #        except:
 #            pass
-pprint(Larazia().get_sms('447413110936'))
+

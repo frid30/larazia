@@ -11,38 +11,27 @@ from sign_up.icq import Icq
 from sign_up.bumrungrad import Bumrungrad
 from sign_up.yahoo import Yahoo
 import os,sys,time
-path = os.path.join(os.path.dirname(
-os.path.abspath(__file__)), 'sign_up')
+
 #SELENIUM
-
-
-def click_on(xpath):
-    try:
-        driver.implicitly_wait(6)
-        driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
-    except:
+from Sms import Feed
+class Main:
+    def __init__(self) -> None:
         pass
-
-
-def fill(xpath, value):
-    try:
-        driver.implicitly_wait(6)
-        searchButton = driver.find_element(By.XPATH, xpath)
-        searchButton.send_keys(value)
-        time.sleep(1)
-    except:
-        pass
-
+    def main(self):
+        driver = uc.Chrome(
+            service=ChromeService(ChromeDriverManager().install()))
+        ID = {'number': '447412984610', 'name': Feed().name(
+        ), 'first_name': Feed().firstname(), 'password': Feed().password}
+        options = Options()
+        options.add_argument('--headless=new')
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--start-maximized")
+        options.add_argument("--no-sandbox")
+        options.add_argument('--headless=new')
+        Bolt().bolt(driver,ID)
+        Icq().icq(driver, ID)
+        Bumrungrad().bumrungrad(driver, ID)
+        Epal().epal(driver, ID)
+        Yahoo().yahoo(driver, ID)
 if __name__=='__main__':
-    options = Options()
-    options.add_argument('--headless=new')
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    options.add_argument("--no-sandbox")
-    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    Bolt().bolt(driver)
-    Icq().icq(driver)
-    Bumrungrad().bumrungrad(driver)
-    Epal().epal(driver)  
-    Yahoo().yahoo(driver)  
+    Main().main()

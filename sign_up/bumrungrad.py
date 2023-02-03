@@ -16,51 +16,50 @@ options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 
-first_name = Feed().firstname()
-name = Feed().name()
-number = "447413097673"
-email = "muaithai75@gmail.com"
 
 
-def click_on(xpath):
-    try:
-        driver.implicitly_wait(6)
-        driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
-    except:
-        pass
-def fill(xpath, value):
-    try:
-        driver.implicitly_wait(6)
-        searchButton = driver.find_element(By.XPATH, xpath)
-        searchButton.send_keys(value)
-        time.sleep(1)
-    except:
-        pass
+
 class Bumrungrad():
     def __init__(self) -> None:
         pass
     def get_code(self,msg):
         code = msg.split(' ')[0]
         return code
-    def bumrungrad(self,driver):
-        driver.maximize_window()
-        driver.get('https://www.bumrungrad.com/')
+    def bumrungrad(self,driver,ID):
+        def click_on(xpath):
+            try:
+                driver.implicitly_wait(6)
+                driver.find_element(By.XPATH, xpath).click()
+                time.sleep(1)
+            except:
+                pass
+        def fill(xpath, value):
+            try:
+                driver.implicitly_wait(6)
+                searchButton = driver.find_element(By.XPATH, xpath)
+                searchButton.send_keys(value)
+                time.sleep(1)
+            except:
+                pass
         print('bumrungrad')
+        number = ID['number']
+        driver.get('https://www.bumrungrad.com/')
+        click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/a")
+        click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/div/a[2]")
+        click_on("/html/body/form/div[9]/div/div/div[2]/div[3]/div/a[2]")
+        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/div")
+        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/ul/li[230]/span[1]")
+        fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/input",number.replace("44",""))
+        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[1]")
         time.sleep(4)
+        sms_code = self.get_code(Larazia().get_sms(number)["msg"])
+        fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[2]/div/input",sms_code)
+        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[2]")
+        click_on("/html/body/form/div[5]/div/div[2]/div/nav/div/div[1]/div/ul/li[6]/a")
         driver.switch_to.new_window('tab')
-#        click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/a")
-#        click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/div/a[2]")
-#        click_on("/html/body/form/div[9]/div/div/div[2]/div[3]/div/a[2]")
-#        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/div")
-#        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/ul/li[230]/span[1]")
-#        fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/input",number.replace("44",""))
-#        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[1]")
-#        time.sleep(4)
-#        sms_code = self.get_code(Larazia().get_sms(number)["msg"])
-#        fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[2]/div/input",sms_code)
-#        click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[2]")
-#        click_on("/html/body/form/div[5]/div/div[2]/div/nav/div/div[1]/div/ul/li[6]/a")
+        time.sleep(4)
+
+
 #if __name__ == '__main__':
 #    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
 #    Bumrumgrad().bumrungrad(driver)
