@@ -57,7 +57,7 @@ class Larazia:
     def larazia(self):
         L = []
         cookies = {
-            'PHPSESSID': 'h56bf19gkonbr7rfv4ann23017',
+            'PHPSESSID': '41gl4eba84l09v768qkj0smgr4',
         }
         while True:
             try:
@@ -80,17 +80,23 @@ class Larazia:
             except Exception as e:
                 print(e)
                 time.sleep(3)
+
     def get_sms(self, number):
         while True:
             try:
                 L = self.larazia()
-                rec = [data for data in L if data['number'] == number and data['date'] > (
-                    datetime.now()+timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")]
+                rec = [data for data in L if data['number']]
+                date = [data['date'] for data in rec]
+                Rec = dict(zip(date,rec))
+                rec = Rec[max(date)]
+                print(rec)
                 return rec
             except Exception as e:
                 print(e)
                 print('restart')
                 time.sleep(2)
+
+
 class Feed:
     def __init__(self) -> None:
         pass
@@ -113,6 +119,9 @@ class Email:
         return
 
 
+if __name__ == '__main__':
+    Larazia().get_sms('447412984610')
+
 # class Navigate():
 #    def click_on(self, xpath):
 #        try:
@@ -130,4 +139,3 @@ class Email:
 #            time.sleep(1)
 #        except:
 #            pass
-

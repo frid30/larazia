@@ -7,11 +7,6 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-options = Options()
-options.headless = False
-options.add_argument("--window-size=1920,1080")
-options.add_argument("--start-maximized")
-options.add_argument("--no-sandbox")
 #A NOUS
 p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
@@ -50,7 +45,7 @@ class Bolt:
         number,name,first_name = ID['number'],ID['name'],ID['first_name']
         driver.maximize_window()
         print('bolt')
-        driver.get("https://bolt.eu/")
+        driver.get("https://m.bolt.eu/")
         click_on("/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
         click_on("/html/body/div[1]/div[1]/div/div/div/div/button[2]")
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/input[2]")
@@ -60,6 +55,7 @@ class Bolt:
         click_on("/html/body/div[2]/div/div/div[2]/form/button")
         time.sleep(7)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
+        print(sms_code)
         fill("/html/body/div[2]/div/div/div[2]/form/div/input[1]",sms_code[0])
         fill("/html/body/div[2]/div/div/div[2]/form/div/input[2]",sms_code[1])
         fill("/html/body/div[2]/div/div/div[2]/form/div/input[3]",sms_code[2])
