@@ -9,6 +9,10 @@ from faker import Faker
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+
+from selenium.webdriver.common.keys import Keys
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class Larazia:
@@ -53,7 +57,7 @@ class Larazia:
     def larazia(self):
         L = []
         cookies = {
-            'PHPSESSID': 'h56bf19gkonbr7rfv4ann23017',
+            'PHPSESSID': '41gl4eba84l09v768qkj0smgr4',
         }
         while True:
             try:
@@ -78,24 +82,31 @@ class Larazia:
                 time.sleep(3)
 
     def get_sms(self, number):
-        L = self.larazia()
         while True:
             try:
-                rec = [data for data in L if data['number'] == number and data['date'] > (
-                    datetime.now() + timedelta(hours=-1, minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")][-1]
+                L = self.larazia()
+                rec = [data for data in L if data['number']]
+                date = [data['date'] for data in rec]
+                Rec = dict(zip(date,rec))
+                rec = Rec[max(date)]
                 print(rec)
                 return rec
             except Exception as e:
                 print(e)
                 print('restart')
                 time.sleep(2)
+
+
 class Feed:
     def __init__(self) -> None:
         pass
+
     def name(self):
         return Faker().first_name()
+
     def password(self):
         return Faker().password()
+
     def firstname(self):
         return Faker().first_name()
 
@@ -108,7 +119,10 @@ class Email:
         return
 
 
-#class Navigate():
+if __name__ == '__main__':
+    Larazia().get_sms('447412984610')
+
+# class Navigate():
 #    def click_on(self, xpath):
 #        try:
 #            driver.implicitly_wait(6)
