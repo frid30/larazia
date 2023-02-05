@@ -30,7 +30,7 @@ class Main:
         options.add_argument('--headless=new')
         Bolt().bolt(driver,ID)
         Icq().icq(driver, ID)
-        Bumrungrad().bumrungrad(driver, ID)
+        # Bumrungrad().bumrungrad(driver, ID)
         Epal().epal(driver, ID)
         Yahoo().yahoo(driver, ID)
 if __name__=='__main__':

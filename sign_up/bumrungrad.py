@@ -15,9 +15,11 @@ options.headless = False
 options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
+options.add_argument('--headless=new')
 
 
-
+ID = {'number': '447413130988', 'name': Feed().name(
+        ), 'first_name': Feed().firstname(), 'password': Feed().password}
 
 class Bumrungrad():
     def __init__(self) -> None:
@@ -44,6 +46,7 @@ class Bumrungrad():
         print('bumrungrad')
         number = ID['number']
         driver.get('https://www.bumrungrad.com/')
+        time.sleep(4)
         click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/a")
         click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/div/a[2]")
         click_on("/html/body/form/div[9]/div/div/div[2]/div[3]/div/a[2]")
@@ -51,7 +54,7 @@ class Bumrungrad():
         click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/div/ul/li[230]/span[1]")
         fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[1]/div/div[2]/input",number.replace("44",""))
         click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[1]")
-        time.sleep(4)
+        time.sleep(10)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
         fill("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/ul/li[2]/div/input",sms_code)
         click_on("/html/body/div[3]/div[2]/div/div/div[2]/form/div[5]/ul/li/div/div[2]/div[4]/button[2]")
@@ -60,6 +63,6 @@ class Bumrungrad():
         time.sleep(4)
 
 
-#if __name__ == '__main__':
-#    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#    Bumrumgrad().bumrungrad(driver)
+if __name__ == '__main__':
+   driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
+   Bumrungrad().bumrungrad(driver,ID)

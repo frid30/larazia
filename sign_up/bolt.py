@@ -15,7 +15,7 @@ from Sms import Larazia,Feed
 
 first_name = Feed().firstname()
 name = Feed().name()
-email = "muaithai75@gmail.com"
+email = "dme.telecomfr@gmail.com"
 
 
 
