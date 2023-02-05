@@ -20,7 +20,7 @@ class Main:
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        ID = {'number': '447413130988', 'name': Feed().name(
+        ID = {'number': '447412993405', 'name': Feed().name(
         ), 'first_name': Feed().firstname(), 'password': Feed().password}
         options = Options()
         options.add_argument('--headless=new')
@@ -31,7 +31,7 @@ class Main:
         Bolt().bolt(driver,ID)
         Icq().icq(driver, ID)
         # Bumrungrad().bumrungrad(driver, ID)
-        Epal().epal(driver, ID)
+        # Epal().epal(driver, ID)
         Yahoo().yahoo(driver, ID)
 if __name__=='__main__':
     Main().main()

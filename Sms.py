@@ -57,7 +57,7 @@ class Larazia:
     def larazia(self):
         L = []
         cookies = {
-            'PHPSESSID': '41gl4eba84l09v768qkj0smgr4',
+            'PHPSESSID': '5puq38mjvdc3pkaa4ljkicfvf4',
         }
         while True:
             try:
