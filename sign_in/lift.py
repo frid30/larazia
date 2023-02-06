@@ -7,8 +7,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import sys
 sys.path.append(r'C:\Users\kamel\Desktop\pumjin')
-from LARAZIA import LARAZIA
-SMS = LARAZIA()
 
 
 def get_code(msg):

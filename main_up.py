@@ -19,20 +19,20 @@ options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
 client = MongoClient(
-    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.dejj1c0.mongodb.net/test')
-DB = client['PHONE_NUMBERS']
+    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
+DB = client['ACCOUNTS']
 IDs = DB['IDs']
 class Main:
     def __init__(self) -> None:
         pass
     def main(self):
-        driver = uc.Chrome(
-            service=ChromeService(ChromeDriverManager().install()))
-        for ID in IDs.find(): 
+        driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        for ID in IDs.find():
+            print(ID)
             Bolt().bolt_up(driver,ID)
             Icq().icq_up(driver, ID)
-            # Bumrungrad().bumrungrad_up(driver, ID)
-            # Epal().epal_up(driver, ID)
+            Bumrungrad().bumrungrad_up(driver, ID)
+            Epal().epal_up(driver, ID)
             Yahoo().yahoo_up(driver, ID)
 # if __name__=='__main__':
 #     Main().main()

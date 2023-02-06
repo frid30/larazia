@@ -11,34 +11,28 @@ from sign_up.icq import Icq
 from sign_up.bumrungrad import Bumrungrad
 from sign_up.yahoo import Yahoo
 import os,sys,time
+from pymongo import MongoClient
 options = Options()
 options.add_argument('--headless=new')
 options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
-
+client = MongoClient(
+    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
+DB = client['ACCOUNTS']
+IDs = DB['IDs']
 class Main:
     def __init__(self) -> None:
         pass
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        Bolt().bolt_in(driver,ID)
-        Icq().icq_in(driver, ID)
-        Bumrungrad().bumrungrad_in(driver, ID)
-        Epal().epal_in(driver, ID)
-        Yahoo().yahoo_in(driver, ID)
-        options = Options()
-        options.add_argument('--headless=new')
-        options.add_argument("--window-size=1920,1080")
-        options.add_argument("--start-maximized")
-        options.add_argument("--no-sandbox")
-        options.add_argument('--headless=new')
-        Bolt().bolt(driver,ID)
-        Icq().icq(driver, ID)
-        # Bumrungrad().bumrungrad(driver, ID)
-        # Epal().epal(driver, ID)
-        Yahoo().yahoo(driver, ID)
+        for ID in IDs.find({}):
+            Bolt().bolt_in(driver,ID)
+            Icq().icq_in(driver, ID)
+            Bumrungrad().bumrungrad_in(driver, ID)
+            Epal().epal_in(driver, ID)
+            Yahoo().yahoo_in(driver, ID)
 if __name__=='__main__':
     Main().main()
