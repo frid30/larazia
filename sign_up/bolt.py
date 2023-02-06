@@ -13,7 +13,6 @@ p_2 = os.path.dirname(p_1)
 sys.path.append(p_2)
 from Sms import Larazia
 
-  
 class Bolt:
     def __init__(self) -> None:
         pass
