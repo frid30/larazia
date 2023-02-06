@@ -82,11 +82,10 @@ class Larazia:
         return L
 
     def get_sms(self, number):
-        b = True
-        print('refreshing...')
-        time.sleep(5)
+
         L = self.larazia()
-        rec = [data for data in L if data['number']==number]
+        pprint(L)
+        rec = [data for data in L if data['number']==number ]
         pprint(rec)
         dates = [data['date'] for data in rec]
         Rec = dict(zip(dates, rec))
@@ -98,4 +97,4 @@ class Larazia:
         return rec
 
 if __name__ == '__main__':
-    Larazia().get_sms('447412984610')
+    Larazia().get_sms('447412999637')
