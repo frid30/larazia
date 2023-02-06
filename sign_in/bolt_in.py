@@ -1,5 +1,5 @@
 #SELENIUM
-from Sms import Larazia, Feed
+from Sms import Larazia
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
