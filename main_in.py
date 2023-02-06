@@ -18,16 +18,12 @@ options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
 
-#SELENIUM
-from Sms import Feed
 class Main:
     def __init__(self) -> None:
         pass
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        ID = {'number': '447412993405', 'name': Feed().name(
-        ), 'first_name': Feed().firstname(), 'password': Feed().password}
         Bolt().bolt_in(driver,ID)
         Icq().icq_in(driver, ID)
         Bumrungrad().bumrungrad_in(driver, ID)

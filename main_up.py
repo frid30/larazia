@@ -11,26 +11,28 @@ from sign_up.icq import Icq
 from sign_up.bumrungrad import Bumrungrad
 from sign_up.yahoo import Yahoo
 import os,sys,time
+from pymongo import MongoClient
 options = Options()
 options.add_argument('--headless=new')
 options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
-#SELENIUM
-from Sms import Feed
+client = MongoClient(
+    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.dejj1c0.mongodb.net/test')
+DB = client['PHONE_NUMBERS']
+IDs = DB['IDs']
 class Main:
     def __init__(self) -> None:
         pass
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        ID = {'number': '447413130988', 'name': Feed().name(
-        ), 'first_name': Feed().firstname(), 'password': Feed().password}
-        Bolt().bolt_up(driver,ID)
-        Icq().icq_up(driver, ID)
-        Bumrungrad().bumrungrad_up(driver, ID)
-        Epal().epal_up(driver, ID)
-        Yahoo().yahoo_up(driver, ID)
+        for ID in IDs.find(): 
+            Bolt().bolt_up(driver,ID)
+            Icq().icq_up(driver, ID)
+            Bumrungrad().bumrungrad_up(driver, ID)
+            Epal().epal_up(driver, ID)
+            Yahoo().yahoo_up(driver, ID)
 if __name__=='__main__':
     Main().main()

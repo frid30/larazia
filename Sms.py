@@ -97,45 +97,5 @@ class Larazia:
         #rec = Rec[date]
         #return rec
 
-
-class Feed:
-    def __init__(self) -> None:
-        pass
-
-    def name(self):
-        return Faker().first_name()
-
-    def password(self):
-        return Faker().password()
-
-    def firstname(self):
-        return Faker().first_name()
-
-
-class Email:
-    def __init__(self) -> None:
-        pass
-
-    def get_email(self):
-        return
-
-
 if __name__ == '__main__':
     Larazia().get_sms('447412984610')
-    # class Navigate():
-#    def click_on(self, xpath):
-#        try:
-#            driver.implicitly_wait(6)
-#            driver.find_element(By.XPATH, xpath).click()
-#            time.sleep(1)
-#        except:
-#            pass
-#
-#    def fill(self, xpath, value):
-#        try:
-#            driver.implicitly_wait(6)
-#            searchButton = driver.find_element(By.XPATH, xpath)
-#            searchButton.send_keys(value)
-#            time.sleep(1)
-#        except:
-#            pass
