@@ -8,7 +8,7 @@ import sys,os,time
 p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
 sys.path.append(p_2)
-from Sms import Larazia, Feed
+from Sms import Larazia
 #SELENIUM
 options = Options()
 options.headless = False
