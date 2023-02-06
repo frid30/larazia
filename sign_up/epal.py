@@ -1,15 +1,18 @@
 
-import sys,os,time,random
+import undetected_chromedriver as uc
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from Sms import Larazia
+import sys
+import os
+import time
+import random
 p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
 sys.path.append(p_2)
-from Sms import Larazia
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromeService
-import undetected_chromedriver as uc
-#SELENIUM
+# SELENIUM
 options = Options()
 options.headless = False
 options.add_argument("--window-size=1920,1080")
@@ -17,14 +20,15 @@ options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 
 
-
 class Epal():
     def __init__(self) -> None:
         pass
-    def get_code(self,msg):
-        code = msg.split(" ")[5].replace(",","")
+
+    def get_code(self, msg):
+        code = msg.split(" ")[5].replace(",", "")
         return code
-    def epal_up(self,driver,ID):
+
+    def epal_up(self, driver, ID):
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -32,6 +36,7 @@ class Epal():
                 time.sleep(1)
             except:
                 pass
+
         def fill(xpath, value):
             try:
                 driver.implicitly_wait(6)
@@ -101,7 +106,8 @@ class Epal():
         click_on("/html/body/div[1]/div[1]/div[1]/div/div[2]/div[1]/button")
         driver.switch_to.new_window('tab')
         time.sleep(4)
-    def epal_in(self,driver,ID):
+
+    def epal_in(self, driver, ID):
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -109,6 +115,7 @@ class Epal():
                 time.sleep(1)
             except:
                 pass
+
         def fill(xpath, value):
             try:
                 driver.implicitly_wait(6)
