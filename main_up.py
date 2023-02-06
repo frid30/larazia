@@ -31,7 +31,6 @@ class Main:
             print(ID)
             Bolt().bolt_up(driver,ID)
             Icq().icq_up(driver, ID)
-            Bumrungrad().bumrungrad_up(driver, ID)
             Epal().epal_up(driver, ID)
             Yahoo().yahoo_up(driver, ID)
 # if __name__=='__main__':
