@@ -43,7 +43,7 @@ class Icq():
             except:
                 pass
         print('icq')
-        number = ID['number']
+        number = ID['phone_number']
         driver.get('https://www.icq.com/')
         click_on("/html/body/div/header/div/ul/li[2]/a")
         click_on("/html/body/div[2]/div/div/div[1]/div/div/div[2]/div/button")

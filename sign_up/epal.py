@@ -41,7 +41,7 @@ class Epal():
             except:
                 pass
         print('epal')
-        number = ID['number']
+        number = ID['phone_number']
         driver.get('https://www.epal.gg/')
         click_on(
             "/html/body/div[1]/div[1]/div[1]/div/div[2]/div[4]/div/div/button[2]")

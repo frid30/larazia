@@ -2,8 +2,8 @@ from pymongo import MongoClient
 from faker import Faker
 from Sms import Larazia
 client = MongoClient(
-    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.dejj1c0.mongodb.net/test')
-DB=client['PHONE_NUMBERS']
+    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
+DB = client['ACCOUNTS']
 IDs = DB['IDs']
 for number in Larazia().numbers:
     data = {'phone_number' : number,

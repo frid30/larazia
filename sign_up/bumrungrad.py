@@ -18,8 +18,6 @@ options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
 
 
-ID = {'number': '447413130988', 'name': Feed().name(
-        ), 'first_name': Feed().firstname(), 'password': Feed().password}
 
 class Bumrungrad():
     def __init__(self) -> None:
@@ -44,7 +42,7 @@ class Bumrungrad():
             except:
                 pass
         print('bumrungrad')
-        number = ID['number']
+        number = ID['phone_number']
         driver.get('https://www.bumrungrad.com/')
         time.sleep(4)
         click_on("/html/body/form/div[5]/div/div[1]/div[3]/div/ul/li[1]/a")

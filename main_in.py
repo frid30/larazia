@@ -19,8 +19,8 @@ options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
 client = MongoClient(
-    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.dejj1c0.mongodb.net/test')
-DB = client['PHONE_NUMBERS']
+    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
+DB = client['ACCOUNTS']
 IDs = DB['IDs']
 class Main:
     def __init__(self) -> None:

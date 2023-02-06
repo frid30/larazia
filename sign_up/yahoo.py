@@ -79,7 +79,7 @@ class Yahoo():
         driver.switch_to.new_window('tab')
         time.sleep(5)
     def yahoo_in(self,driver,ID):
-        number,name,first_name = ID['number'],ID['name'],ID['first_name']
+        number,name,first_name = ID['phone_number'],ID['name'],ID['first_name']
         def click_on(xpath):
             try:
                 driver.implicitly_wait(10)
