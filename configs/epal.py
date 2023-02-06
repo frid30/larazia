@@ -36,7 +36,6 @@ class Epal():
                 time.sleep(1)
             except:
                 pass
-
         def fill(xpath, value):
             try:
                 driver.implicitly_wait(6)
