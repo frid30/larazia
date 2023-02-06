@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from sign_up.bolt import Bolt
 from sign_up.epal import Epal
 from sign_up.icq import Icq
-from sign_up.bumrungrad import Bumrungrad
+# from sign_up.bumrungrad import Bumrungrad
 from sign_up.yahoo import Yahoo
 import os,sys,time
 from pymongo import MongoClient
@@ -36,4 +36,7 @@ class Main:
             Yahoo().yahoo_up(driver, ID)
 # if __name__=='__main__':
 #     Main().main()
-print(IDs)
+IDs = DB['IDs']
+
+for ID in DB['IDs'].find():
+    print(ID)
