@@ -36,7 +36,7 @@ class Data():
                         'email': f"{firstname.lower()}.{name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}"}
                 f.write(str(data)+'\n')
 
-    def ID s(self):
+    def IDs(self):
         self.refill_db()
         L = []
         with open('IDs.txt', 'r') as f:
