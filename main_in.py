@@ -10,7 +10,9 @@ from sign_up.epal import Epal
 from sign_up.icq import Icq
 from sign_up.bumrungrad import Bumrungrad
 from sign_up.yahoo import Yahoo
-import os,sys,time
+import os
+import sys
+import time
 from pymongo import MongoClient
 options = Options()
 options.add_argument('--headless=new')
@@ -22,17 +24,22 @@ client = MongoClient(
     'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
 DB = client['ACCOUNTS']
 IDs = DB['IDs']
+
+
 class Main:
     def __init__(self) -> None:
         pass
+
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
         for ID in IDs.find({}):
-            Bolt().bolt_in(driver,ID)
+            Bolt().bolt_in(driver, ID)
             Icq().icq_in(driver, ID)
             Bumrungrad().bumrungrad_in(driver, ID)
             Epal().epal_in(driver, ID)
             Yahoo().yahoo_in(driver, ID)
-if __name__=='__main__':
+
+
+if __name__ == '__main__':
     Main().main()
