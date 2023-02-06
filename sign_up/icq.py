@@ -53,7 +53,7 @@ class Icq():
         fill("/html/body/div[2]/div/div[1]/div/form/div/input",
             number.replace("44", ""))
         click_on("/html/body/div[2]/div/div[1]/div/form/button")
-        time.sleep(7)
+        time.sleep(10)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
         fill("/html/body/div[2]/div/div[1]/div/form/input[1]", sms_code)
         fill("/html/body/div[2]/div[2]/div/div/div/input[1]", ID['first_name'])

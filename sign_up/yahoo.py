@@ -57,17 +57,17 @@ class Yahoo():
         fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[2]/input",
             f"{name}.{first_name}{random.randint(10000,458400000)}")
         fill(
-            "/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[3]/input", password)
+            "/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[3]/input", "Monsoleil1")
         fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[4]/fieldset/input",
             str(random.randint(1960, 2000)))
         click_on('/html/body/div[1]/div[2]/div[1]/div[2]/form/div[6]/button')
         time.sleep(3)
         fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset/input",
             number.replace("44", ""))
-        time.sleep(6)
+        time.sleep(5)
         click_on("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[3]/button")
-        input()
-        time.sleep(6)
+
+        time.sleep(10)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
         fill(
             "/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[1]/input", sms_code)
