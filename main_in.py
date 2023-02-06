@@ -33,12 +33,11 @@ class Main:
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        for ID in IDs.find({}):
-            Bolt().bolt_in(driver, ID)
-            Icq().icq_in(driver, ID)
-            Bumrungrad().bumrungrad_in(driver, ID)
-            Epal().epal_in(driver, ID)
-            Yahoo().yahoo_in(driver, ID)
+        #    Bolt().bolt_in(driver, ID)
+        #    Icq().icq_in(driver, ID)
+        #    Bumrungrad().bumrungrad_in(driver, ID)
+        #    Epal().epal_in(driver, ID)
+        #    Yahoo().yahoo_in(driver, ID)
 
 
 if __name__ == '__main__':

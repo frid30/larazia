@@ -5,11 +5,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from sign_up.bolt import Bolt
-from sign_up.epal import Epal
-from sign_up.icq import Icq
+from configs.bolt import Bolt
+from configs.epal import Epal
+from configs.icq import Icq
 # from sign_up.bumrungrad import Bumrungrad
-from sign_up.yahoo import Yahoo
+from configs.yahoo import Yahoo
 import os,sys,time
 from pymongo import MongoClient
 options = Options()
@@ -28,17 +28,13 @@ class Main:
 
     def main(self):
         driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-        ID = random.choice(no)
         try:
             print(ID)
             Bolt().bolt_up(driver,ID)
             Icq().icq_up(driver, ID)
-            Bumrungrad().bumrungrad_up(driver, ID)
             Epal().epal_up(driver, ID)
             Yahoo().yahoo_up(driver, ID)
+        except Exception as e:
+            print(e)
 # if __name__=='__main__':
 #     Main().main()
-IDs = DB['IDs']
-
-for ID in DB['IDs'].find():
-    print(ID)
