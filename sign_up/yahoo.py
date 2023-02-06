@@ -39,7 +39,7 @@ class Yahoo():
                 time.sleep(2)
             except:
                 pass
-        number,name,first_name,password = ID['number'],ID['name'],ID['first_name'],ID['password']
+        number,name,first_name,password = ID['phone_number'],ID['name'],ID['first_name'],ID['password']
         print('yahoo')
         driver.maximize_window()
         driver.get("https://www.yahoo.com")
@@ -57,7 +57,7 @@ class Yahoo():
         fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[2]/input",
             f"{name}.{first_name}{random.randint(10000,458400000)}")
         fill(
-            "/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[3]/input", "Monsoleil1")
+            "/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset[3]/input", password)
         fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[4]/fieldset/input",
             str(random.randint(1960, 2000)))
         click_on('/html/body/div[1]/div[2]/div[1]/div[2]/form/div[6]/button')
