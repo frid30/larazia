@@ -26,7 +26,7 @@ class Bolt:
     def get_code(self,msg):
         code = msg.split(' ')[0]
         return code
-    def bolt(self,driver,ID):
+    def bolt_up(self,driver,ID):
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -70,6 +70,41 @@ class Bolt:
         click_on("/html/body/div[2]/div/div[2]/div[2]/form/div[3]/label[2]/span")
         driver.switch_to.new_window('tab')
         time.sleep(2)
+    def bolt_in(self,driver,ID):
+        def click_on(xpath):
+            try:
+                driver.implicitly_wait(6)
+                driver.find_element(By.XPATH, xpath).click()
+                time.sleep(1)
+            except:
+                pass
+        def fill(xpath, value):
+            try:
+                driver.implicitly_wait(6)
+                searchButton = driver.find_element(By.XPATH, xpath)
+                searchButton.send_keys(value)
+                time.sleep(1)
+            except:
+                pass
+        driver.maximize_window()
+        driver.get("https://bolt.eu/")
+        click_on(
+            "/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
+        click_on("/html/body/div[1]/div[1]/div/div/div/div/button[2]")
+        click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/input[2]")
+        time.sleep(2)
+        fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",
+            ID['number'].replace("44", ""))
+        time.sleep(2)
+        click_on("/html/body/div[2]/div/div/div[2]/form/button")
+        time.sleep(7)
+        # sms_code = get_code(Getsms.get_sms(number)["msg"])
+        time.sleep(3)
+        click_on("/html/body/div[2]/div/div/div[1]/div[1]/button")
+        click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/div[1]/a[1]")
+        click_on("/html/body/div[2]/div/div[2]/div[2]/form/div[3]/label[2]/span")
+        time.sleep(3000)
+
 
 
 

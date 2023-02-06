@@ -55,7 +55,7 @@ if __name__ == '__main__':
     fill("/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div/div[1]/form/div/div[1]/div[2]/div[1]/div/div/div[2]/span/input",number.replace("+44",""))
     click_on("/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div/div[2]/div[2]/button")
     click_on("/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/button[2]")
-    sms_code = ()
+    sms_code = self.get_code(Larazia().get_sms(number)["msg"])
 
     fill("/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[1]/input",sms_code[0])
     fill("/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[2]/input",sms_code[1])

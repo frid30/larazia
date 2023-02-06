@@ -16,11 +16,6 @@ options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 
-first_name = Feed().firstname()
-name = Feed().name()
-password = Feed().password()
-
-email = "muaithai75@gmail.com"
 
 
 class Yahoo():
@@ -28,7 +23,7 @@ class Yahoo():
         pass
     def get_code(self,msg):
         return msg.split(" ")[0]
-    def yahoo(self,driver,ID):
+    def yahoo_up(self,driver,ID):
         def click_on(xpath):
             try:
                 driver.implicitly_wait(10)
@@ -83,6 +78,55 @@ class Yahoo():
         click_on("/html/body/div[2]/div/main/div[3]/div/div[1]/div/div/div/div/a")
         driver.switch_to.new_window('tab')
         time.sleep(5)
+    def yahoo_in(self,driver,ID):
+        number,name,first_name = ID['number'],ID['name'],ID['first_name']
+        def click_on(xpath):
+            try:
+                driver.implicitly_wait(10)
+                driver.find_element(By.XPATH, xpath).click()
+                time.sleep(2)
+            except:
+                pass
+        def fill(xpath, value):
+            try:
+                driver.implicitly_wait(10)
+                searchButton = driver.find_element(By.XPATH, xpath)
+                searchButton.send_keys(value)
+                time.sleep(2)
+            except:
+                pass
+        time.sleep(6)
+        click_on("/html/body/div/div/div/div/form/div[2]/div[2]/button")
+        click_on(
+            "/html/body/header/div[1]/div/div/div/div/div[2]/div/div[3]/div[1]/div/a")
+        fill("/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[1]/div[3]/input",
+            number.replace("44", ""))
+        click_on("/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[2]/input")
+        time.sleep(2)
+        fill(
+            "/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[1]/div[2]/div[1]/input", first_name)
+        fill(
+            "/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[1]/div[2]/div[2]/input", name)
+        time.sleep(1)
+
+        click_on("/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[2]/button")
+        time.sleep(random.randint(1, 4))
+
+        click_on(
+            "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[2]/button")
+        time.sleep(8)
+        sms_code = self.get_code(Larazia().get_sms(number)["msg"])
+        fill(
+            "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[1]/input", sms_code)
+        click_on(
+            "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/div[2]/button")
+        click_on(
+            "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/form/ul/li/div[2]/button")
+        click_on(
+            "/html/body/header/div[1]/div/div/div/div/div[3]/div/div/ul/li[1]/a")
+        click_on(
+            "/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div/div/div[2]/div/div[1]/ul/li[1]/div/a/div[1]/div[2]/span")
+        time.sleep(3000000)
 #if __name__=='__main__':
 #    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
 #

@@ -25,7 +25,7 @@ class Larazia:
             'pageview': 'sms',
             'pageviewcnt': '50',
             'pagesearch': '',
-            'pageorder': 'cliasc',
+            'pageorder': 'clientdsc',
             'pageno': '1',
             'noclient': 'all',
             'nobillgroup': 'all',
@@ -37,15 +37,21 @@ class Larazia:
             'action': 'get',
         }
         self.headers = {
-            'Accept': 'application/json, text/javascript, /; q=0.01',
-            'Accept-Language': 'fr,fr-FR;q=0.9,en-US;q=0.8,en;q=0.7',
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
             'Connection': 'keep-alive',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            # 'Cookie': 'PHPSESSID=3aadshi34ge5hgovaldgkm47s0',
-            'Origin': 'http://portal.exampletele.com/',
-            'Referer': 'http://portal.exampletele.com/index.php?page=reports&sub=reporting&action=sms',
+            # 'Cookie': 'PHPSESSID=41gl4eba84l09v768qkj0smgr4',
+            'Origin': 'https://portal.exampletele.com',
+            'Referer': 'https://portal.exampletele.com/index.php?page=reports&sub=reporting&action=sms',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
             'X-Requested-With': 'XMLHttpRequest',
+            'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
         }
         self.numbers = [number[0]
                         for number in csv.reader(open('numbers.txt', 'r'))]
@@ -59,42 +65,37 @@ class Larazia:
         cookies = {
             'PHPSESSID': '41gl4eba84l09v768qkj0smgr4',
         }
-        while True:
-            try:
-                data = json.loads(requests.post(
-                    'http://portal.exampletele.com/ajax_form_handler.php',
-                    cookies=cookies,
-                    headers=self.headers,
-                    data=self.data,
-                    verify=False,
-                ).text.replace('\\t', '').replace('\\n', ''))['form']
-                soup = BeautifulSoup(data, 'html.parser')
-                td = list(self.divide_chunks(list(filter(lambda x: x not in ('', 'Terminate SMS'), [
-                    l.text for l in soup.findAll('td', attrs={'class': 'pad15T'})])), 4))
-                S = set()
-                for l in td:
-                    number, date, msg = l[0], l[2], l[3]
-                    data = {'number': number, 'date': date, 'msg': msg}
-                    L.append(data)
-                return L
-            except Exception as e:
-                print(e)
-                time.sleep(3)
+        data = json.loads(requests.post(
+            'http://portal.exampletele.com/ajax_form_handler.php',
+            cookies=cookies,
+            headers=self.headers,
+            data=self.data,
+            verify=False,
+        ).text.replace('\\t', '').replace('\\n', ''))['form']
+        soup = BeautifulSoup(data, 'html.parser')
+        td = list(self.divide_chunks(list(filter(lambda x: x not in ('', 'Terminate SMS'), [
+            l.text for l in soup.findAll('td', attrs={'class': 'pad15T'})])), 4))
+        for l in td:
+            number, date, msg = l[0], l[2], l[3]
+            data = {'number': number, 'date': date, 'msg': msg}
+            L.append(data)
+        return L
 
     def get_sms(self, number):
-        while True:
-            try:
-                L = self.larazia()
-                rec = [data for data in L if data['number']]
-                date = [data['date'] for data in rec]
-                Rec = dict(zip(date,rec))
-                rec = Rec[max(date)]
-                print(rec)
-                return rec
-            except Exception as e:
-                print(e)
-                print('restart')
-                time.sleep(2)
+        b = True
+        print('refreshing...')
+        time.sleep(5)
+        L = self.larazia()
+        rec = [data for data in L if data['number']==number]
+        pprint(rec)
+        #dates = [data['date'] for data in rec]
+        #Rec = dict(zip(dates, rec))
+        #date = max(dates)
+        #print(date)
+        #b = date < (datetime.now() + timedelta(hours=-1,
+        #            minutes=-1)).strftime("%Y-%m-%d %H:%M:%S")
+        #rec = Rec[date]
+        #return rec
 
 
 class Feed:
@@ -121,8 +122,7 @@ class Email:
 
 if __name__ == '__main__':
     Larazia().get_sms('447412984610')
-
-# class Navigate():
+    # class Navigate():
 #    def click_on(self, xpath):
 #        try:
 #            driver.implicitly_wait(6)
