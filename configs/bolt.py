@@ -35,7 +35,7 @@ class Bolt:
                 time.sleep(1)
             except:
                 pass
-        number,name,first_name = ID['phone_number'],ID['name'],ID['first_name']
+        number,name,first_name,email = ID['phone_number'],ID['name'],ID['first_name'],ID['email']
         driver.maximize_window()
         print('bolt')
         driver.get("https://m.bolt.eu/")

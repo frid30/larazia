@@ -63,7 +63,7 @@ class Larazia:
     def larazia(self):
         L = []
         cookies = {
-            'PHPSESSID': 'g9l8shjvecob8jrkop9ff6vva5',
+            'PHPSESSID': '6pb07bq55ff468co12hfl6hf61',
         }
         data = json.loads(requests.post(
             'http://portal.exampletele.com/ajax_form_handler.php',
@@ -89,6 +89,7 @@ class Larazia:
         date = max(dates)
         rec = Rec[date]
         return rec
+    
 
 if __name__ == '__main__':
     Larazia().get_sms('447412999637')

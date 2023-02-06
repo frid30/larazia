@@ -52,9 +52,9 @@ class Epal():
         click_on("/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div/div[1]/div[1]/div/div[2]/div")
         click_on('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div/div[2]/
                  div/div[2]/div[1]/form/div[1]/div/div[2]/div/div/div/div[1]/div[1]/div/span[1]''')
-        click_on("/html/body/div[1]/div[1]/div[2]/div/button")
-        click_on('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div/div[2]/div/
-                 div[2]/div[1]/form/div[1]/div[1]/div[2]/div[1]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div/div/div[230]/div''')
+        click_on("/html/body/div[1]/div[1]/div[2]/div/button")     
+        click_on('''/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div/div/div[1]/div[1]''')
+        click_on('''/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/div/div/div[230]''')
         fill('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div/div
              [2]/div/div[2]/div[1]/form/div[1]/div[1]/div[2]/div[1]/div/div/div[2]/span/input''', number.replace("44", ""))
         fill('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]
@@ -130,12 +130,12 @@ class Epal():
             "/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[1]/div[1]/div/div[2]/div")
         click_on(
             "/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div/div[3]/a")
-        click_on('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]
-                 /div/div/div/div/div[2]/div/div[2]/div/div[1]/form/div/div/div[2]/div/div/div/div[1]/div[1]/div/span[2]''')
-        click_on('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/
-        div/div/div/div/div[2]/div/div[2]/div/div[1]/form/div/div/div[2]/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/div/div/div[230]/div''')
-        fill('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div
-             /div/div/div/div[2]/div/div[2]/div/div[1]/form/div/div[1]/div[2]/div[1]/div/div/div[2]/span/input''', ID['number'].replace("+44", ""))
+        click_on('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div/div[1]/form/div/div/div[2]/div/div/div/div[1]/div[1]/div/span[2]''')
+        
+        
+        click_on('''/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[1]/form/div[1]/div/div[2]/div/div/div/div[1]/div[1]/div/span[1]/input''')
+        click_on('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div/div[1]/form/div/div/div[2]/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/div/div/div[230]/div''')
+        fill('''/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div/div[1]/form/div/div[1]/div[2]/div[1]/div/div/div[2]/span/input''', ID['number'].replace("+44", ""))
         click_on(
             "/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div/div[2]/div[2]/button")
         click_on(
@@ -163,4 +163,13 @@ class Epal():
 
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    Epal().epal(driver)
+    Epal().epal_up(driver,{
+  "_id": {
+    "$oid": "63e10d755fdac2fe6245be0a"
+  },
+  "phone_number": "447412999637",
+  "first_name": "Reed",
+  "name": "Matthew",
+  "password": ")+78FaeeWC",
+  "email": "reed.matthew1600@courriel.fr.nf"
+})
