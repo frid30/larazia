@@ -12,7 +12,13 @@ def insert():
     return jsonify({'message' : 'document successfully inserted'})
 @app.route('/get', methods=['GET'])
 def get():
-        return jsonify(list(IDs.find()))
+    R=[]
+    for ID in IDs.find():
+        del ID['_id']
+        R.append(ID)
+    return jsonify(R)
+
+    
 @app.route('/update', methods=['GET'])
 def put():
     data = json.loads(request.data)
@@ -21,3 +27,5 @@ def put():
     IDs.update_one({'number': number},{'$set': {service: ID['service']+1}})
 
 
+if __name__=='__main__':
+    app.run(host="0.0.0.0", debug=False, port=5000)
