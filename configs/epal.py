@@ -164,12 +164,12 @@ class Epal():
 if __name__ == '__main__':
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     Epal().epal_up(driver,{
-  "_id": {
-    "$oid": "63e10d755fdac2fe6245be0a"
-  },
-  "phone_number": "447412999637",
-  "first_name": "Reed",
-  "name": "Matthew",
-  "password": ")+78FaeeWC",
-  "email": "reed.matthew1600@courriel.fr.nf"
+    "_id": {
+      "$oid": "63e10d755fdac2fe6245be0a"
+    },
+    "phone_number": "447412999637",
+    "first_name": "Reed",
+    "name": "Matthew",
+    "password": ")+78FaeeWC",
+    "email": "reed.matthew1600@courriel.fr.nf"
 })
