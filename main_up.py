@@ -8,20 +8,14 @@ from selenium.webdriver.chrome.options import Options
 from configs.bolt import Bolt
 from configs.epal import Epal
 from configs.icq import Icq
-# from sign_up.bumrungrad import Bumrungrad
+from configs.lyft import Lyft
 from configs.yahoo import Yahoo
-import os,sys,time
-from pymongo import MongoClient
 options = Options()
 options.add_argument('--headless=new')
 options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
-client = MongoClient(
-    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
-DB = client['ACCOUNTS']
-IDs = DB['IDs']
 class Main:
     def __init__(self) -> None:
         pass
@@ -34,6 +28,7 @@ class Main:
             Icq().icq_up(driver, ID)
             Epal().epal_up(driver, ID)
             Yahoo().yahoo_up(driver, ID)
+            Lyft().lyft_up(driver,ID)
         except Exception as e:
             print(e)
 # if __name__=='__main__':
