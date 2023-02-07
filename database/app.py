@@ -21,15 +21,13 @@ class User(db.Model):
     last_name = db.Column(db.String(32))
     email = db.Column(db.String(32), unique=True)
     password = db.Column(db.String(32))
-
     def __init__(self, phone_number,first_name,last_name,email,password):
         self.phone_number = phone_number
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = password
-db.create_all()
-print(tables)
+
 class UserSchema(ma.Schema):
     class Meta:
         fields = ('id','first_name','last_name','email','password')
@@ -111,6 +109,7 @@ class UserManager(Resource):
         })
 
 
+db.create_all()
 api.add_resource(UserManager, '/api/users')
 
 if __name__ == '__main__':
