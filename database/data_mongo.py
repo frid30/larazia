@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from faker import Faker
 from Sms import Larazia
-import random
+import random,ast
 import json
 from pprint import pprint
 client = MongoClient(
@@ -29,7 +29,7 @@ class Data():
             for number in Larazia().numbers:
                 name, firstname = Faker().name().split(
                     ' ')[0], Faker().name().split(' ')[1]
-                data = {'phone_number': number,
+                data = {'phone_number': int(number),
                         'first_name': firstname,
                         'name': name,
                         'password': Faker().password(),
@@ -42,4 +42,7 @@ class Data():
         with open('IDs.txt', 'r') as f:
             f = f.read()
             L = f.split('\n')
-            return L
+            for x in L:
+                print(self.str_to_dict(x))
+
+Data().IDs()
