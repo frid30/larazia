@@ -17,7 +17,6 @@ def get():
         del ID['_id']
         R.append(ID)
     return jsonify(R)
-
     
 @app.route('/update', methods=['GET'])
 def put():
@@ -25,7 +24,6 @@ def put():
     number,service = data['number'],data['service']
     ID = IDs.find_one({'number':number})
     IDs.update_one({'number': number},{'$set': {service: ID['service']+1}})
-
 
 if __name__=='__main__':
     app.run(host="0.0.0.0", debug=False, port=5000)

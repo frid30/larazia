@@ -1,7 +1,10 @@
 from pymongo import MongoClient
-from faker import Faker
+from faker import Faker  
+import sys,os,time,random,requests
+p_1 = (os.path.dirname(os.path.abspath(__file__)))
+p_2 = os.path.dirname(p_1)
+sys.path.append(p_2)
 from Sms import Larazia
-import random,ast
 import json
 from pprint import pprint
 client = MongoClient(
@@ -15,26 +18,19 @@ liste_domain = ["@uefia.com", "@mynes.com", "@hunnur.com",
 class Data():
     def __init__(self) -> None:
         pass
-
-    def get_numbers(self):
-        liste = []
-        for id in IDs.find():
-            liste.append(id["phone_number"])
-        return liste
-
     def refill_db(self):
         L = []
-        numbers_already_registered = self.get_numbers()
-        with open('IDs.txt', 'w') as f:
-            for number in Larazia().numbers:
-                name, firstname = Faker().name().split(
-                    ' ')[0], Faker().name().split(' ')[1]
-                data = {'phone_number': int(number),
-                        'first_name': firstname,
-                        'name': name,
-                        'password': Faker().password(),
-                        'email': f"{firstname.lower()}.{name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}"}
-                f.write(str(data)+'\n')
+        f = open('numbers.txt','r')
+        for number in f:
+            first_name = Faker().name().split(' ')[0]
+            last_name = Faker().name().split(' ')[1]
+            data = {'number': int(number),
+                    'first_name': first_name,
+                    'name': last_name,
+                    'password': Faker().password(),
+                    'email': f"{first_name.lower()}.{last_name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}"}
+            r = requests.get('https://apidatabase.herokuapp.com/insert',data=data)
+    #f.write(str(data)+'\n')
 
     def IDs(self):
         self.refill_db()
@@ -45,4 +41,5 @@ class Data():
             for x in L:
                 print(self.str_to_dict(x))
 
-Data().IDs()
+
+Data().refill_db()
