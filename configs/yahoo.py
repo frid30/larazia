@@ -1,9 +1,11 @@
 
 import sys,os,time,random
+from capmonster_python import RecaptchaV2Task
 p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
 sys.path.append(p_2)
 from Sms import Larazia
+from bson import ObjectId
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
@@ -39,6 +41,7 @@ class Yahoo():
                 time.sleep(2)
             except:
                 pass
+            
         number,name,first_name,password = ID['phone_number'],ID['name'],ID['first_name'],ID['password']
         print('yahoo')
         driver.maximize_window()
@@ -64,9 +67,33 @@ class Yahoo():
         time.sleep(3)
         fill("/html/body/div[1]/div[2]/div[1]/div[2]/form/fieldset/input",
             number.replace("44", ""))
-        time.sleep(5)
-        click_on("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[3]/button")
+        time.sleep(8)
 
+        click_on("/html/body/div[1]/div[2]/div[1]/div[2]/form/div[3]/button")
+        
+
+        try:
+             driver.implicitly_wait(10)
+             driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[2]/button")
+        except:
+            try:
+                capmonster = RecaptchaV2Task("5d4fc8d721ca7365258b20e9de8c06fc")
+                task_id = capmonster.create_task(
+                    driver.current_url, 
+                    "6Ldbp6saAAAAAAwuhsFeAysZKjR319pRcKUitPUO")
+                result = capmonster.join_task_result(task_id)
+                a = result.get("gRecaptchaResponse")
+                print(a)
+                driver.execute_script("document.getElementsByClassName('g-recaptcha-response')[0].innerHTML = "
+                                      f"'{a}';")
+
+                driver.find_element(By.ID, """recaptcha-anchor""").click()
+                click_on("/html/body/div[1]/div/form/button")
+                #6Ldbp6saAAAAAAwuhsFeAysZKjR319pRcKUitPUO
+            except Exception as e: 
+                print(e)
+                time.sleep(300)
+    
         time.sleep(10)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
         fill(
@@ -127,8 +154,8 @@ class Yahoo():
         click_on(
             "/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div/div/div[2]/div/div[1]/ul/li[1]/div/a/div[1]/div[2]/span")
         time.sleep(3000000)
-#if __name__=='__main__':
-#    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#
-#    
-#
+if __name__=='__main__':
+   driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
+   Yahoo().yahoo_up(driver,{'_id': ObjectId('63e10d7f5fdac2fe6245be22'), 'phone_number': '447413123788', 'first_name': 'Raymond', 'name': 'Alexis', 'password': '(X3QPO*xqy', 'email': 'raymond.alexis1464@mynes.com'})
+   
+

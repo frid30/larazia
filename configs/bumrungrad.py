@@ -98,7 +98,7 @@ class Bumrungrad():
         click_on(
             "/html/body/form/div[5]/div/div[2]/div/nav/div/div[1]/div/ul/li[6]/a")
 
-
-if __name__ == '__main__':
-   driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-   Bumrungrad().bumrungrad(driver,ID)
+# 
+# if __name__ == '__main__':
+#    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
+#    Bumrungrad().bumrungrad(driver,ID)
