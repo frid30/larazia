@@ -24,7 +24,7 @@ options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
 
 
-class Airbnb:
+class Heetch:
     def __init__(self) -> None:
         pass
 
@@ -32,10 +32,11 @@ class Airbnb:
         code = msg.strip('.').split(' ')[-1]
         return code
     
-    def airbnb_up(self):
+    def heetch_up(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        ID = {'bolt': 0, 'bumrungrad': 0, 'email': 'graham.glenn578@monmail.fr.nf', 'epal': 0, 'first_name': 'Graham', 'icq': 0, 'lyft': 0, 'last_name': 'Glenn', 'password': ')nYhOBNuO0', 'phone_number': '447413070926', 'postmates': 0, 'yahoo': 0}
+        ID = {'phone_number': '447413091927', 'first_name': 'Mendez',
+              'last_name': 'Micheal', 'password': '9&0E7XkwT@', 'email': 'mendez.micheal1591@uefia.com'}
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -51,25 +52,22 @@ class Airbnb:
                 time.sleep(1)
             except:
                 pass
+        number, first_name, last_name, email = ID['phone_number'], ID['first_name'], ID['last_name'], ID['email']
         driver.maximize_window()
-        driver.get("https://airbnb.com/signup_login")
-
-        driver.implicitly_wait(6)
-
-        click_on("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[1]/div[1]/div/div[2]/div/svg")
-        
-        click_on("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[1]/div[1]/div/div[2]/label/div[2]/select/option[230]")
-        fill("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[1]/div[2]/div/div[2]/label/div[2]/div/input",number[2:])
-        click_on('/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[4]/button')
-        time.sleep(5)
-        try:
-            sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
-            print("")
-            fill("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/div[1]/div[1]/div/label/div/div/input",sms_code)
-        except:
-            pass
-
+        driver.get(
+            "https://auth.heetch.com/?client_id=driver-portal&redirect_uri=https%3A%2F%2Fdriver.heetch.com%2Fauth_callback")
+        click_on('//*[@id="axeptio_btn_acceptAll"]')
+        click_on(
+            '/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/div/div/div')
+        click_on(
+            '/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/ul/li[202]')
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/input',number[2:])
+        click_on('/html/body/div[1]/div/div/div[2]/div[2]/form/button')
+        sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
+        print(sms_code)
         time.sleep(3000)
+        
+
 
 if __name__=='__main__':
-    Airbnb().airbnb_up()
+    Heetch().heetch_up()
