@@ -23,7 +23,7 @@ class Sinch():
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
         ID = {'phone_number': '447413091927', 'first_name': 'Mendez',
-              'last_name': 'Micheal', 'password': '9&0E7XkwT@', 'email': 'mendez.micheal1591@uefia.com'}
+              'last_name': 'Micheal', 'password': 2*'9&0E7XkwT@', 'email': 'mendez.micheal1591@uefia.com'}
         def click_on(xpath):
             driver.implicitly_wait(1000)
             driver.find_element(By.XPATH, xpath).click()
@@ -42,10 +42,7 @@ class Sinch():
         fill('//*[@id="app"]/div[2]/div/div/div/div/div/div/div[3]/form/div[1]/div[2]/div[2]/div/input', ID['last_name'])
         fill( '//*[@id="app"]/div[2]/div/div/div/div/div/div/div[3]/form/div[1]/div[3]/div[2]/div/input',ID['email'])
         fill('//*[@id="app"]/div[2]/div/div/div/div/div/div/div[3]/form/div[1]/div[4]/div[2]/div/input',ID['password'])
-        click_on(
-            '//*[@id="app"]/div[2]/div/div/div/div/div/div/div[3]/form/div[1]/div[5]/div[2]/div/div')
-        time.sleep(400)
-        fill('//*[@id="app"]/div[2]/div/div/div/div/div/div/div[3]/form/div[1]/div[5]/div[2]/div/div', 'united kingdom'+Keys.RETURN)
+
         click_on(
             '//*[@id="app"]/div[2]/div/div/div/div/div/div/div[3]/form/div[1]/div[6]/label/span[1]/span[1]/input')
         click_on('//*[@id="app"]/div[2]/div/div/div/div/div/div/div[3]/form/div[1]/div[7]/button')
