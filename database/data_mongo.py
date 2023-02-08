@@ -1,12 +1,18 @@
-from pymongo import MongoClient
-from faker import Faker  
-import sys,os,time,random,requests
+import sys
+import os
+import time
+import random
+import requests
+import json
 p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
 sys.path.append(p_2)
 from Sms import Larazia
-import json
 from pprint import pprint
+from pymongo import MongoClient
+from faker import Faker
+
+
 client = MongoClient(
     'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
 DB = client['ACCOUNTS']
@@ -18,9 +24,10 @@ liste_domain = ["@uefia.com", "@mynes.com", "@hunnur.com",
 class Data():
     def __init__(self) -> None:
         pass
+
     def refill_db(self):
         L = []
-        f = open('numbers.txt','r')
+        f = open('numbers.txt', 'r')
         for number in f:
             first_name = Faker().name().split(' ')[0]
             last_name = Faker().name().split(' ')[1]
@@ -29,17 +36,14 @@ class Data():
                     'name': last_name,
                     'password': Faker().password(),
                     'email': f"{first_name.lower()}.{last_name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}"}
-            r = requests.get('https://apidatabase.herokuapp.com/insert',data=data)
-    #f.write(str(data)+'\n')
+            #data |= {s.split('.')[0]: 0 for s in os.listdir('configs')}
+            print(data)
+            #r = requests.get('https://apidatabase.herokuapp.com/insert',data=data)
 
     def IDs(self):
-        self.refill_db()
-        L = []
-        with open('IDs.txt', 'r') as f:
-            f = f.read()
-            L = f.split('\n')
-            for x in L:
-                print(self.str_to_dict(x))
+        r = json.loads(requests.get(
+            'https://apidatabase.herokuapp.com/get').text)
+        return r
 
 
-Data().refill_db()
+

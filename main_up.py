@@ -11,7 +11,7 @@ from configs.epal import Epal
 from configs.icq import Icq
 # from sign_up.bumrungrad import Bumrungrad
 from configs.yahoo import Yahoo
-import os,sys,time
+import os,sys,time,time
 from pymongo import MongoClient
 options = Options()
 options.add_argument('--headless=new')
@@ -47,4 +47,5 @@ class Main:
                 print(e)
                 print(ID)
 if __name__=='__main__':
-    Main().main()
+    for s in os.listdir('configs'):
+        

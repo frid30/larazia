@@ -10,6 +10,7 @@ from configs.epal import Epal
 from configs.icq import Icq
 from configs.lyft import Lyft
 from configs.yahoo import Yahoo
+from database.data_mongo import Data
 
 options = Options()
 options.add_argument('--headless=new')
@@ -24,13 +25,15 @@ class Main:
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        try:
-            Bolt().bolt_in(driver, ID)
-            Icq().icq_in(driver, ID)
-            Epal().epal_in(driver, ID)
-            Yahoo().yahoo_in(driver, ID)
-            Lyft().lyft_up(driver, ID)
-        except Exception as e:
-            print(e)
+        for ID in Data().IDs():
+            for i in range(3):
+                try:
+                    Bolt().bolt_in(driver, ID)
+                    Icq().icq_in(driver, ID)
+                    Epal().epal_in(driver, ID)
+                    Yahoo().yahoo_in(driver, ID)
+                    Lyft().lyft_up(driver, ID)
+                except Exception as e:
+                    print(e)
 if __name__ == '__main__':
     Main().main()
