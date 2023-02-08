@@ -90,9 +90,9 @@ class Larazia:
                 Rec = dict(zip(dates, rec))
                 date = max(dates)
                 rec = Rec[date]
-                return ResourceWarning
+                return rec
             except Exception as e:
                 print(e)
 
 if __name__ == '__main__':
-    print(Larazia().get_sms('447413070926'))
+    print(Larazia().get_sms('447413097673'))
