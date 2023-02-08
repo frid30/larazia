@@ -64,7 +64,7 @@ class Icq():
         time.sleep(4)
         driver.switch_to.new_window('tab')
     def icq_in(self,driver,ID):
-        number = ID['number']
+        number = ID['phone_number']
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -95,7 +95,8 @@ class Icq():
         fill("/html/body/div[2]/div/div[1]/div/form/input[1]", sms_code)
         click_on("/html/body/div[2]/div[3]/div/div[1]/span/div/div[1]")
         click_on("/html/body/div[3]/div/div[1]/div/div/div/div[4]")
-        time.sleep(30000)
+        driver.switch_to.new_window('tab')
+        time.sleep(2)
 
 
 #if __name__ == '__main__':

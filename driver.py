@@ -33,5 +33,11 @@ if __name__=='__main__':
     options.add_argument("--no-sandbox")
     driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://www.finder.com")
-    click_on()
+    
+    click_on("/html/body/header/div/div[2]/div[2]/button")
+    click_on("/html/body/div[13]/div/div/div/ul/li[2]/a")
+    click_on("/html/body/div[1]/div/div/div/div/div/section/div/div[1]/div[1]/div/div/div[3]/p[2]")
+    fill("/html/body/div[1]/div/div/div/div/div/section/div/div[1]/div[1]/div/div/div[4]/input",number)
+    click_on("/html/body/div[1]/div/div/div/div/div/section/div/div[1]/div[1]/div/div/div[6]/button")
+
     time.sleep(3000000)
