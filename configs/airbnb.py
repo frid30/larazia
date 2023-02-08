@@ -49,15 +49,11 @@ class Airbnb:
         options.add_argument("--window-size=1920,1080")
         options.add_argument("--start-maximized")
         options.add_argument("--no-sandbox")
-        service_args = [
-        '--proxy=residential.pingproxies.com:7777',
-        '--proxy-auth=customer-330b0f81CJQKi-sessid-swrWOHQoZ:Pp1l4hpvzh',
-        '--proxy-type=http',
-            ]
+        service_args = [    '--proxy=residential.pingproxies.com:7777',    '--proxy-user=customer-330b0f81CJQKi-sessid-swrWOHQoZ',    '--proxy-pass=Pp1l4hpvzh',    '--proxy-type=http',]
 
-
-        driver = uc.Chrome(options=options,service_args=service_args)
+        driver = uc.Chrome(options=options, service_args=service_args)
         driver.get("https://airbnb.com/signup_login")
+        time.sleep(3000)
 
         driver.implicitly_wait(6)
 
