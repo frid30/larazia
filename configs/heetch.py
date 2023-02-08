@@ -29,7 +29,7 @@ class Heetch:
         pass
 
     def get_code(self, msg):
-        code = msg.strip('.').split(' ')[-1]
+        code = msg.split(' ')[4]
         return code
     
     def heetch_up(self):
@@ -63,9 +63,14 @@ class Heetch:
             '/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/ul/li[202]')
         fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/input',number[2:])
         click_on('/html/body/div[1]/div/div/div[2]/div[2]/form/button')
-        sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
+        time.sleep(10)
+        sms_code = self.get_code(Larazia().get_sms(number)['msg']) 
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[1]',sms_code[0])
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[2]',sms_code[1])
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[3]',sms_code[2])
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[4]',sms_code[3])
         print(sms_code)
-        time.sleep(3000)
+        
         
 
 
