@@ -25,18 +25,19 @@ class Main:
     def __init__(self) -> None:
         pass
     def main(self):
-        driver = uc.Chrome(
-            service=ChromeService(ChromeDriverManager().install()))
+        
         for ID in Data().IDs():
-            for i in range(3):
+                driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
                 try:
-                    Bolt().bolt_up(driver, ID)
-                    Icq().icq_up(driver, ID)
-                    Epal().epal_up(driver, ID)
-                    Yahoo().yahoo_up(driver, ID)
+                    # Bolt().bolt_up(driver, ID)
+                    # Icq().icq_up(driver, ID)
+                    # Epal().epal_up(driver, ID)
+                    # Yahoo().yahoo_up(driver, ID)
                     Lyft().lyft_up(driver, ID)
+                    driver.quit()
                 except Exception as e:
                     print(e)
+                    driver.quit()
 if __name__=='__main__':
     Main().main()
         
