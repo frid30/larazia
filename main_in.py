@@ -28,7 +28,6 @@ class Main:
     def main(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-
         for ID in no:
             try:
                 print(ID)
@@ -39,7 +38,6 @@ class Main:
                 # #  Epal().epal_in(driver, ID)
                 # #  Yahoo().yahoo_in(driver, ID)
                 # #  Lyft().lyft_up(driver, ID)
-
                 driver.quit()
             except Exception as e :
                 driver.quit()
