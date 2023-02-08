@@ -61,7 +61,6 @@ class Airbnb:
         click_on('//*[@id="FMP-target"]/div/div/div/form/div/div[4]/button/span[1]/span')
         sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
         print(sms_code)
-
         time.sleep(3000)
 
 
