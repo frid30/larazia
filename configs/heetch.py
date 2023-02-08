@@ -36,7 +36,7 @@ class Heetch:
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
         ID = {'phone_number': '447413091927', 'first_name': 'Mendez',
-              'last_name': 'Micheal', 'password': 2*'9&0E7XkwT@', 'email': 'mendez.micheal1591@uefia.com'}
+              'last_name': 'Micheal', 'password': '9&0E7XkwT@', 'email': 'mendez.micheal1591@uefia.com'}
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -57,11 +57,8 @@ class Heetch:
         driver.get(
             "https://auth.heetch.com/?client_id=driver-portal&redirect_uri=https%3A%2F%2Fdriver.heetch.com%2Fauth_callback")
         click_on('//*[@id="axeptio_btn_acceptAll"]')
-        //*[@id = "root"]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/div
-        #click_on('//*[@id="country"]')
-        #fill('//*[@id="country"]','royaume uni' + Keys.RETURN)
-        #fill('//*[@id="phoneInputphoneNumber"]',number[2:])
-        #click_on('//*[@id="FMP-target"]/div/div/div/form/div/div[4]/button/span[1]/span')
+        fill('//*[@id="root"]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/divuni', Keys.arrow_down)
+        click_on('//*[@id="FMP-target"]/div/div/div/form/div/div[4]/button/span[1]/span')
         #sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
         #print(sms_code)
         time.sleep(3000)
