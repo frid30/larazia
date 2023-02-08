@@ -24,7 +24,7 @@ options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
 
 
-class Airbnb:
+class Heetch:
     def __init__(self) -> None:
         pass
 
@@ -32,12 +32,11 @@ class Airbnb:
         code = msg.strip('.').split(' ')[-1]
         return code
     
-    def airbnb_up(self):
+    def heetch_up(self):
         driver = uc.Chrome(
             service=ChromeService(ChromeDriverManager().install()))
-        ID = {'phone_number': '447412993405', 'last_name': 'Smith',
-              'first_name': 'Benjamin', 'password': 'N9+1q6Dwr9', 'email': 'smith.benjamin2961@courriel.fr.nf'}
-        number = ID['phone_number']
+        ID = {'phone_number': '447413091927', 'first_name': 'Mendez',
+              'last_name': 'Micheal', 'password': 2*'9&0E7XkwT@', 'email': 'mendez.micheal1591@uefia.com'}
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -53,16 +52,20 @@ class Airbnb:
                 time.sleep(1)
             except:
                 pass
+        number, first_name, last_name, email = ID['phone_number'], ID['first_name'], ID['last_name'], ID['email']
         driver.maximize_window()
-        driver.get("https://www.airbnb.co.uk/login")
-        click_on('//*[@id="country"]')
-        fill('//*[@id="country"]','united kingdom' + Keys.RETURN)
-        fill('//*[@id="phoneInputphoneNumber"]',number[2:])
-        click_on('//*[@id="FMP-target"]/div/div/div/form/div/div[4]/button/span[1]/span')
-        sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
-        print(sms_code)
+        driver.get(
+            "https://auth.heetch.com/?client_id=driver-portal&redirect_uri=https%3A%2F%2Fdriver.heetch.com%2Fauth_callback")
+        click_on('//*[@id="axeptio_btn_acceptAll"]')
+        //*[@id = "root"]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/div
+        #click_on('//*[@id="country"]')
+        #fill('//*[@id="country"]','royaume uni' + Keys.RETURN)
+        #fill('//*[@id="phoneInputphoneNumber"]',number[2:])
+        #click_on('//*[@id="FMP-target"]/div/div/div/form/div/div[4]/button/span[1]/span')
+        #sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
+        #print(sms_code)
         time.sleep(3000)
 
 
 if __name__=='__main__':
-    Airbnb().airbnb_up()
+    Heetch().heetch_up()
