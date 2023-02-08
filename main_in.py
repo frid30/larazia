@@ -32,7 +32,7 @@ class Main:
                     Icq().icq_in(driver, ID)
                     Epal().epal_in(driver, ID)
                     Yahoo().yahoo_in(driver, ID)
-                    Lyft().lyft_up(driver, ID)
+                    Lyft().lyft_in(driver, ID)
                 except Exception as e:
                     print(e)
 if __name__ == '__main__':
