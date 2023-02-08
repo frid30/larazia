@@ -46,7 +46,8 @@ class Yahoo():
         print('yahoo')
         driver.maximize_window()
         driver.get("https://www.yahoo.com")
-        time.sleep(2)
+        time.sleep(7)
+        click_on('/html/body/div/div/div/div/form/div[2]/div[2]/button')
         click_on("/html/body/div/div/div/div/form/div[2]/div[2]/button")
         click_on(
             "/html/body/header/div[1]/div/div/div/div/div[2]/div/div[3]/div[1]/div/a")
@@ -77,18 +78,22 @@ class Yahoo():
              driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[1]/div[2]/div/form/div[2]/button")
         except:
             try:
+                url = "https://login.yahoo.net"
                 capmonster = RecaptchaV2Task("5d4fc8d721ca7365258b20e9de8c06fc")
                 task_id = capmonster.create_task(
-                    driver.current_url, 
-                    "6Ldbp6saAAAAAAwuhsFeAysZKjR319pRcKUitPUO")
+                    url,    "6Ldbp6saAAAAAAwuhsFeAysZKjR319pRcKUitPUO")
                 result = capmonster.join_task_result(task_id)
                 a = result.get("gRecaptchaResponse")
                 print(a)
-                driver.execute_script("document.getElementsByClassName('g-recaptcha-response')[0].innerHTML = "
-                                      f"'{a}';")
+                driver.execute_script(f"""document.getElementsByClassName('g-recaptcha-response').value = "{a}" """)
+                
+                try:
+                    click_on("/html/body/div[2]/div[3]/div[1]/div/div/span")
+                except:
+                    click_on("/html/body/div[2]/div[3]/div[1]/div/div/span")
 
-                driver.find_element(By.ID, """recaptcha-anchor""").click()
-                click_on("/html/body/div[1]/div/form/button")
+                click_on("/html/body/div[1]/div/form/button")        
+        
                 #6Ldbp6saAAAAAAwuhsFeAysZKjR319pRcKUitPUO
             except Exception as e: 
                 print(e)

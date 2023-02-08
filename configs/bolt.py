@@ -80,23 +80,31 @@ class Bolt:
             except:
                 pass
         driver.maximize_window()
-        driver.get("https://bolt.eu/")
+        driver.get("https://m.bolt.eu/")
         click_on(
             "/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
         click_on("/html/body/div[1]/div[1]/div/div/div/div/button[2]")
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/input[2]")
         time.sleep(2)
         fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",
-            ID['number'].replace("44", ""))
+            ID['phone_number'].replace("44", ""))
         time.sleep(2)
         click_on("/html/body/div[2]/div/div/div[2]/form/button")
         time.sleep(7)
-        # sms_code = get_code(Getsms.get_sms(number)["msg"])
-        time.sleep(3)
+        sms_code = self.get_code(Larazia().get_sms(str(ID['phone_number']))["msg"])
+
+        print(sms_code)
+        fill("/html/body/div[2]/div/div/div[2]/form/div/input[1]",sms_code[0])
+        fill("/html/body/div[2]/div/div/div[2]/form/div/input[2]",sms_code[1])
+        fill("/html/body/div[2]/div/div/div[2]/form/div/input[3]",sms_code[2])
+        fill("/html/body/div[2]/div/div/div[2]/form/div/input[4]",sms_code[3])
+        time.sleep(2)
+
         click_on("/html/body/div[2]/div/div/div[1]/div[1]/button")
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/div[1]/a[1]")
         click_on("/html/body/div[2]/div/div[2]/div[2]/form/div[3]/label[2]/span")
-        time.sleep(3000)
+        driver.switch_to.new_window('tab')
+        time.sleep(2)
 
 
 
