@@ -12,14 +12,14 @@ sys.path.append(path)
 
 def click_on(xpath):
     try:
-        driver.implicitly_wait(6)
+        driver.implicitly_wait(16)
         driver.find_element(By.XPATH, xpath).click()
         time.sleep(1)
     except:
         pass
 def fill( xpath, value):
     try:
-        driver.implicitly_wait(6)
+        driver.implicitly_wait(16)
         searchButton = driver.find_element(By.XPATH, xpath)
         searchButton.send_keys(value)
         time.sleep(1)
@@ -31,13 +31,48 @@ if __name__=='__main__':
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--start-maximized")
     options.add_argument("--no-sandbox")
-    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    driver.get("https://www.finder.com")
+ 
     
-    click_on("/html/body/header/div/div[2]/div[2]/button")
-    click_on("/html/body/div[13]/div/div/div/ul/li[2]/a")
-    click_on("/html/body/div[1]/div/div/div/div/div/section/div/div[1]/div[1]/div/div/div[3]/p[2]")
-    fill("/html/body/div[1]/div/div/div/div/div/section/div/div[1]/div[1]/div/div/div[4]/input",number)
-    click_on("/html/body/div[1]/div/div/div/div/div/section/div/div[1]/div[1]/div/div/div[6]/button")
+    ID = {'bolt': 0, 'bumrungrad': 0, 'email': 'graham.glenn578@monmail.fr.nf', 'epal': 0, 'first_name': 'Graham', 'icq': 0, 'lyft': 0, 'last_name': 'Glenn', 'password': ')nYhOBNuO0', 'phone_number': '447413070926', 'postmates': 0, 'yahoo': 0}
+    
+    service_args = [
+    '--proxy=residential.pingproxies.com:7777',
+    '--proxy-auth=customer-330b0f81CJQKi-sessid-KEq1JZUXu:Pp1l4hpvzh',
+    '--proxy-type=http',
+        ]
 
-    time.sleep(3000000)
+
+    driver = uc.Chrome(options=options,service_args=service_args)
+    driver.get("https://airbnb.com/signup_login")
+
+    driver.implicitly_wait(6)
+
+    click_on("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[1]/div[1]/div/div[2]/div/svg")
+    
+    click_on("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[1]/div[1]/div/div[2]/label/div[2]/select/option[230]")
+    fill("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[1]/div[2]/div/div[2]/label/div[2]/div/input",ID["phone_number"][2:])
+    click_on('/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/form/div/div[4]/button')
+    time.sleep(5)
+    try:
+        sms_code = self.get_code(Larazia().get_sms(ID["phone_number"])['msg'])
+        time.sleep(2)
+                    
+        fill("/html/body/div[5]/div/div/div[1]/div/div[1]/div[1]/main/div/div/div/div/div/div[1]/div[1]/div/label/div/div/input",sms_code)
+    except:
+        pass
+    time.sleep(2)
+
+    fill("/html/body/div[13]/section/div/div/div[2]/div/div[2]/div/div/form/div[1]/div[1]/div/div[2]/label/div[2]/div/input",ID["first_name"])
+    time.sleep(2)                
+    fill("/html/body/div[13]/section/div/div/div[2]/div/div[2]/div/div/form/div[1]/div[2]/div/div[2]/label/div[2]/div/input",ID["last_name"])
+    time.sleep(2)
+    fill("/html/body/div[13]/section/div/div/div[2]/div/div[2]/div/div/form/div[3]/div[1]/div/div/div[2]/label/div[2]/div/input","19012001")
+    time.sleep(2)                
+
+    fill("/html/body/div[13]/section/div/div/div[2]/div/div[2]/div/div/form/div[4]/div/div[1]/label/div[2]/div/input",ID["email"])
+    time.sleep(2)                
+    
+    click_on("/html/body/div[13]/section/div/div/div[2]/div/div[2]/div/div/form/div[7]/button")
+    time.sleep(3000)
+
+    
