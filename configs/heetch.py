@@ -22,21 +22,13 @@ options.add_argument("--window-size=1920,1080")
 options.add_argument("--start-maximized")
 options.add_argument("--no-sandbox")
 options.add_argument('--headless=new')
-
-
 class Heetch:
     def __init__(self) -> None:
         pass
-
     def get_code(self, msg):
-        code = msg.strip('.').split(' ')[-1]
+        code = msg.split(' ')[4]
         return code
-    
-    def heetch_up(self):
-        driver = uc.Chrome(
-            service=ChromeService(ChromeDriverManager().install()))
-        ID = {'phone_number': '447413091927', 'first_name': 'Mendez',
-              'last_name': 'Micheal', 'password': '9&0E7XkwT@', 'email': 'mendez.micheal1591@uefia.com'}
+    def heetch_up(self,driver,ID):
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -63,11 +55,14 @@ class Heetch:
             '/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/ul/li[202]')
         fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/input',number[2:])
         click_on('/html/body/div[1]/div/div/div[2]/div[2]/form/button')
-        sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
+        time.sleep(10)
+        sms_code = self.get_code(Larazia().get_sms(number)['msg'])
         print(sms_code)
-        time.sleep(3000)
-        
-
-
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[1]',sms_code[0])
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[2]',sms_code[1])
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[3]',sms_code[2])
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[4]',sms_code[3])
+        driver.switch_to.new_window('tab')
+        time.sleep(2)
 if __name__=='__main__':
     Heetch().heetch_up()
