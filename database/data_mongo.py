@@ -53,5 +53,4 @@ for x in [  {'_id': ObjectId('63e10d7c5fdac2fe6245be1b'), 'phone_number': '44741
 print(liste20)
 for x in Data().IDs():
     if x["phone_number"] not in liste20:
-        liste.append(x)
-print(liste)
+        print(x)
