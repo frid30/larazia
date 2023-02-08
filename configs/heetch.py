@@ -57,11 +57,16 @@ class Heetch:
         driver.get(
             "https://auth.heetch.com/?client_id=driver-portal&redirect_uri=https%3A%2F%2Fdriver.heetch.com%2Fauth_callback")
         click_on('//*[@id="axeptio_btn_acceptAll"]')
-        fill('//*[@id="root"]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/divuni', Keys.arrow_down)
-        click_on('//*[@id="FMP-target"]/div/div/div/form/div/div[4]/button/span[1]/span')
-        #sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
-        #print(sms_code)
+        click_on(
+            '/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/div/div/div')
+        click_on(
+            '/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/ul/li[202]')
+        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/input',number[2:])
+        click_on('/html/body/div[1]/div/div/div[2]/div[2]/form/button')
+        sms_code = self.get_code(Larazia().get_sms(number)['msg'])                        
+        print(sms_code)
         time.sleep(3000)
+        
 
 
 if __name__=='__main__':
