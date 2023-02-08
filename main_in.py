@@ -11,6 +11,7 @@ from configs.epal import Epal
 from configs.icq import Icq
 from configs.lyft import Lyft
 from configs.yahoo import Yahoo
+from configs.heetch import Heetch
 from database.data_mongo import Data
 
 options = Options()
@@ -32,13 +33,13 @@ class Main:
             try:
                 print(ID)
                 driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-
-
                 Bolt().bolt_in(driver, ID)
                 Icq().icq_in(driver, ID)
+                Heetch().heetch_in(driver,ID)
                 # #  Epal().epal_in(driver, ID)
                 # #  Yahoo().yahoo_in(driver, ID)
                 # #  Lyft().lyft_up(driver, ID)
+
                 driver.quit()
             except Exception as e :
                 driver.quit()

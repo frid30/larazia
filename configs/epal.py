@@ -158,7 +158,9 @@ class Epal():
         time.sleep(2)
         click_on(
             "/html/body/div[1]/div[1]/div[1]/div/div[1]/div/div/div[1]/ul/li[2]/span/a")
-        time.sleep(3000)
+        driver.switch_to.new_window('tab')
+        time.sleep(2)
+
 
 
 if __name__ == '__main__':
