@@ -1,9 +1,18 @@
+import sys
+import os
+import time
+import random
+import requests
+import json
+p_1 = (os.path.dirname(os.path.abspath(__file__)))
+p_2 = os.path.dirname(p_1)
+sys.path.append(p_2)
+from Sms import Larazia
+from pprint import pprint
 from pymongo import MongoClient
 from faker import Faker
-from Sms import Larazia
-import random,ast
-import json
-from pprint import pprint
+
+
 client = MongoClient(
     'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
 DB = client['ACCOUNTS']
@@ -16,33 +25,25 @@ class Data():
     def __init__(self) -> None:
         pass
 
-    def get_numbers(self):
-        liste = []
-        for id in IDs.find():
-            liste.append(id["phone_number"])
-        return liste
-
     def refill_db(self):
         L = []
-        numbers_already_registered = self.get_numbers()
-        with open('IDs.txt', 'w') as f:
-            for number in Larazia().numbers:
-                name, firstname = Faker().name().split(
-                    ' ')[0], Faker().name().split(' ')[1]
-                data = {'phone_number': int(number),
-                        'first_name': firstname,
-                        'name': name,
-                        'password': Faker().password(),
-                        'email': f"{firstname.lower()}.{name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}"}
-                f.write(str(data)+'\n')
+        f = open('numbers.txt', 'r')
+        for number in f:
+            first_name = Faker().name().split(' ')[0]
+            last_name = Faker().name().split(' ')[1]
+            data = {'number': int(number),
+                    'first_name': first_name,
+                    'name': last_name,
+                    'password': Faker().password(),
+                    'email': f"{first_name.lower()}.{last_name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}"}
+            #data |= {s.split('.')[0]: 0 for s in os.listdir('configs')}
+            print(data)
+            #r = requests.get('https://apidatabase.herokuapp.com/insert',data=data)
 
     def IDs(self):
-        self.refill_db()
-        L = []
-        with open('IDs.txt', 'r') as f:
-            f = f.read()
-            L = f.split('\n')
-            for x in L:
-                print(self.str_to_dict(x))
+        r = json.loads(requests.get(
+            'https://apidatabase.herokuapp.com/get').text)
+        return r
 
-Data().IDs()
+
+
