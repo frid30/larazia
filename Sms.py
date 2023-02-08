@@ -90,7 +90,7 @@ class Larazia:
                 Rec = dict(zip(dates, rec))
                 date = max(dates)
                 rec = Rec[date]
-                return ResourceWarning
+                return rec
             except Exception as e:
                 print(e)
 
