@@ -14,7 +14,10 @@ from pymongo import MongoClient
 from faker import Faker
 
 
-
+client = MongoClient(
+    'mongodb+srv://Walter_McLovin:iammclovin777@cluster0.d7cbbym.mongodb.net/test')
+DB = client['ACCOUNTS']
+IDs = DB['IDs']
 liste_domain = ["@uefia.com", "@mynes.com", "@hunnur.com",
                 "@monemail.fr.nf", "@monmail.fr.nf", "@courriel.fr.nf"]
 
