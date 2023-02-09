@@ -28,7 +28,7 @@ class Heetch:
     def get_code(self, msg):
         code = msg.split(' ')[4]
         return code
-    def heetch_up(self,driver,ID):
+    def heetch_in(self,driver,ID):
         def click_on(xpath):
             try:
                 driver.implicitly_wait(6)
@@ -65,4 +65,4 @@ class Heetch:
         driver.switch_to.new_window('tab')
         time.sleep(2)
 if __name__=='__main__':
-    Heetch().heetch_up()
+    Heetch().heetch_in()

@@ -100,7 +100,9 @@ class Main:
     def __init__(self) -> None:
         pass
     def main(self):
-        counter = 0
+        driver = uc.Chrome(
+            service=ChromeService(ChromeDriverManager().install()))
+
         for ID in no:
             try:
                 leg_proxy = proxies[counter].split(":")
@@ -120,7 +122,6 @@ class Main:
                 # #  Epal().epal_in(driver, ID)
                 # #  Yahoo().yahoo_in(driver, ID)
                 # #  Lyft().lyft_up(driver, ID)
-
                 driver.quit()
                 counter += 1
             except Exception as e :
