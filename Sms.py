@@ -95,4 +95,4 @@ class Larazia:
                 print(e)
 
 if __name__ == '__main__':
-    print(Larazia().get_sms('447413097673'))
+   print(Larazia)
