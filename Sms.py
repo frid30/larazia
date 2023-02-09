@@ -63,7 +63,7 @@ class Larazia:
     def larazia(self):
         L = []
         cookies = {
-            'PHPSESSID': 'n3r33gq2j4bi3j6n4irjls0sd1',
+            'PHPSESSID': '2ehvqn4pmaj1itandcut8govv3',
         }
         data = json.loads(requests.post(
             'http://portal.exampletele.com/ajax_form_handler.php',

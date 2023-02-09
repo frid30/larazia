@@ -77,12 +77,11 @@ class ProxyExtension:
 
 
 if __name__ == "__main__":
-    proxy = ("residential.pingproxies.com", 7777, "customer-330b0f81CJQKi-cc-GB-sessid-XA51b6KGP", "Pp1l4hpvzh")  # your proxy with auth, this one is obviously fake
+    proxy = ("residential.pingproxies.com", 7777, "customer-330b0f81CJQKi-cc-GB-sessid-XA51b6KG", "Pp1l4hpvzh")  # your proxy with auth, this one is obviously fake
     proxy_extension = ProxyExtension(*proxy)
 
     options = webdriver.ChromeOptions()
     options.add_argument(f"--load-extension={proxy_extension.directory}")
     driver = webdriver.Chrome(options=options)
 
-    driver.get("https://whatismyipaddress.com/")
     driver.quit()
