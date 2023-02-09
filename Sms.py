@@ -53,8 +53,8 @@ class Larazia:
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
         }
-        self.numbers = [number[0]
-                        for number in csv.reader(open('numbers.txt', 'r'))]
+        # self.numbers = [number[0]
+        #                 for number in csv.reader(open('numbers.txt', 'r'))]
 
     def divide_chunks(self, l, n):
         for i in range(0, len(l), n):
@@ -95,4 +95,4 @@ class Larazia:
                 print(e)
 
 if __name__ == '__main__':
-    print(Larazia().get_sms('447413097673'))
+    print(Larazia().get_sms('447413133524'))
