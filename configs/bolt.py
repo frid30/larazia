@@ -25,23 +25,26 @@ class Bolt:
                 driver.implicitly_wait(6)
                 driver.find_element(By.XPATH, xpath).click()
                 time.sleep(1)
-            except:
-                pass
+            except Exception as e: 
+                print(xpath,e)
         def fill(xpath, value):
             try:
                 driver.implicitly_wait(6)
                 searchButton = driver.find_element(By.XPATH, xpath)
                 searchButton.send_keys(value)
                 time.sleep(1)
-            except:
-                pass
+            except Exception as e: 
+                print(xpath,e)
         number,name,first_name,email = ID['phone_number'],ID['name'],ID['first_name'],ID['email']
         driver.maximize_window()
         print('bolt')
         driver.get("https://m.bolt.eu/")
         click_on("/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
         click_on("/html/body/div[1]/div[1]/div/div/div/div/button[2]")
+        
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/input[2]")
+        driver.find_element(By.XPATH,"/html/body/div/div/div/div[2]/form/div/div/input[1]").clear()
+        fill("/html/body/div/div/div/div[2]/div[2]/div/input[1]","44")
         time.sleep(2)
         fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",number.replace("44",""))
         time.sleep(2)
@@ -79,11 +82,15 @@ class Bolt:
             except:
                 pass
         driver.maximize_window()
+        print('bolt')
         driver.get("https://m.bolt.eu/")
-        click_on(
-            "/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
+        click_on("/html/body/div[3]/div[1]/div/div/div[1]/div/div[1]/div/div/div/a")
         click_on("/html/body/div[1]/div[1]/div/div/div/div/button[2]")
+        
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/input[2]")
+        driver.find_element(By.XPATH,"/html/body/div/div/div/div[2]/form/div/div/input[1]").clear()
+        time.sleep(1)
+        fill("/html/body/div/div/div/div[2]/form/div/div/input[1]","+44")
         time.sleep(2)
         fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",
             ID['phone_number'].replace("44", ""))

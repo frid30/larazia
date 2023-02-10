@@ -26,25 +26,25 @@ class Heetch:
     def __init__(self) -> None:
         pass
     def get_code(self, msg):
-        code = msg.split(' ')[4]
+        code = msg.split(' ')[2]
         return code
     def heetch_in(self,driver,ID):
         def click_on(xpath):
             try:
-                driver.implicitly_wait(6)
+                driver.implicitly_wait(4)
                 driver.find_element(By.XPATH, xpath).click()
                 time.sleep(1)
             except:
                 pass
         def fill(xpath, value):
             try:
-                driver.implicitly_wait(6)
+                driver.implicitly_wait(4)
                 searchButton = driver.find_element(By.XPATH, xpath)
                 searchButton.send_keys(value)
                 time.sleep(1)
             except:
                 pass
-        number, first_name, last_name, email = ID['phone_number'], ID['first_name'], ID['last_name'], ID['email']
+        number, first_name, last_name, email = ID['phone_number'], ID['first_name'], ID['name'], ID['email']
         driver.maximize_window()
         driver.get(
             "https://auth.heetch.com/?client_id=driver-portal&redirect_uri=https%3A%2F%2Fdriver.heetch.com%2Fauth_callback")
