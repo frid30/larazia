@@ -58,10 +58,9 @@ class Heetch:
         time.sleep(10)
         sms_code = self.get_code(Larazia().get_sms(number)['msg'])
         print(sms_code)
-        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[1]',sms_code[0])
-        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[2]',sms_code[1])
-        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[3]',sms_code[2])
-        fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[4]',sms_code[3])
+        if sms_code:
+            for i in range(4):
+                fill(f'/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[{i+1}]',sms_code[i])
         driver.switch_to.new_window('tab')
         time.sleep(2)
 if __name__=='__main__':
