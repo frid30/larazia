@@ -68,7 +68,7 @@ class Epal():
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
         print(sms_code)
         if sms_code:
-            for i in range(6):
+            for i in range(5):
                 fill(
                     f"/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[{i+1}]/input", sms_code[i])
         click_on(
@@ -136,7 +136,7 @@ class Epal():
         sms_code = self.get_code(Larazia().get_sms(ID['number'])["msg"])
         print(sms_code)
         if sms_code :
-            for i in range(6): 
+            for i in range(5): 
                 fill(f"/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[{i+1}]/input", sms_code[i])
         click_on(
             "/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[3]/div/button[2]")
