@@ -53,8 +53,8 @@ class Larazia:
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
         }
-        self.numbers = [number[0]
-                        for number in csv.reader(open('numbers.txt', 'r'))]
+        # self.numbers = [number[0]
+        #                 for number in csv.reader(open('numbers.txt', 'r'))]
 
     def divide_chunks(self, l, n):
         for i in range(0, len(l), n):
@@ -63,7 +63,7 @@ class Larazia:
     def larazia(self):
         L = []
         cookies = {
-            'PHPSESSID': '5h71o8t516db87l0qpn1qeob54',
+            'PHPSESSID': 'n3r33gq2j4bi3j6n4irjls0sd1',
         }
         data = json.loads(requests.post(
             'http://portal.exampletele.com/ajax_form_handler.php',
@@ -97,4 +97,4 @@ class Larazia:
         return None
 
 if __name__ == '__main__':
-   print(Larazia().get_sms('447412999637'))
+   print(Larazia)
