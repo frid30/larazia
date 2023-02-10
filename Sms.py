@@ -82,19 +82,22 @@ class Larazia:
         return L
 
     def get_sms(self, number):
-        for i in range(20):
-            try:
-                L = self.larazia()
-                rec = [data for data in L if data['number']==number]
-                pprint(rec)
-                dates = [data['date'] for data in rec]
-                Rec = dict(zip(dates, rec))
-                date = max(dates)
-                rec = Rec[date]
-                return rec
-            except Exception as e:
-                print(e)
-        return None
+        try:
+            for i in range(20):
+                try:
+                    L = self.larazia()
+                    rec = [data for data in L if data['number']==number]
+                    pprint(rec)
+                    dates = [data['date'] for data in rec]
+                    Rec = dict(zip(dates, rec))
+                    date = max(dates)
+                    rec = Rec[date]
+                    return rec
+                except Exception as e:
+                    print(e)
+            return None
+        except:
+            return None
 
 if __name__ == '__main__':
    print(Larazia)

@@ -53,7 +53,7 @@ class Bolt:
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
         print(sms_code)
         if sms_code:
-            for i in range(4):
+            for i in range(3):
                 fill(f"/html/body/div[2]/div/div/div[2]/form/div/input[{i+1}]",sms_code[i])
         fill("/html/body/div[2]/div/div/div[2]/form/input",email)
         fill("/html/body/div[2]/div/div/div[2]/form/div[1]/input[1]",first_name)
@@ -92,16 +92,15 @@ class Bolt:
         time.sleep(1)
         fill("/html/body/div/div/div/div[2]/form/div/div/input[1]","+44")
         time.sleep(2)
-        fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",
-            ID['phone_number'].replace("44", ""))
+        fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",ID['phone_number'].replace("44", ""))
         time.sleep(2)
         click_on("/html/body/div[2]/div/div/div[2]/form/button")
         time.sleep(7)
         sms_code = self.get_code(Larazia().get_sms(str(ID['phone_number']))["msg"])
         print(sms_code)
         if sms_code:
-            for i in range(4):
-                fill("/html/body/div[2]/div/div/div[2]/form/div/input[{i+1}]",sms_code[i])
+            for i in range(3):
+                fill(f"/html/body/div[2]/div/div/div[2]/form/div/input[{i+1}]",sms_code[i])
         time.sleep(2)
         click_on("/html/body/div[2]/div/div/div[1]/div[1]/button")
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/div[1]/a[1]")
