@@ -54,18 +54,14 @@ class Heetch:
         click_on(
             '/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div[2]/ul/li[202]')
         fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/input',number[2:])
-        try:
-            click_on('/html/body/div[1]/div/div/div[2]/div[2]/form/button')
-            time.sleep(10)
-            sms_code = self.get_code(Larazia().get_sms(number)['msg'])
-            print(sms_code)
-            fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[1]',sms_code[0])
-            fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[2]',sms_code[1])
-            fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[3]',sms_code[2])
-            fill('/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[4]',sms_code[3])
-            driver.switch_to.new_window('tab')
-            time.sleep(2)
-        except:
-            pass
+        click_on('/html/body/div[1]/div/div/div[2]/div[2]/form/button')
+        time.sleep(10)
+        sms_code = self.get_code(Larazia().get_sms(number)['msg'])
+        print(sms_code)
+        if sms_code:
+            for i in range(4):
+                fill(f'/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[{i+1}]',sms_code[i])
+        driver.switch_to.new_window('tab')
+        time.sleep(2)
 if __name__=='__main__':
     Heetch().heetch_in()

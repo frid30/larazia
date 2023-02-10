@@ -66,18 +66,11 @@ class Epal():
         click_on(
             "/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/button[2]")
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[1]/input", sms_code[0])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[2]/input", sms_code[1])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[3]/input", sms_code[2])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[4]/input", sms_code[3])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[5]/input", sms_code[4])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[6]/input", sms_code[5])
+        print(sms_code)
+        if sms_code:
+            for i in range(6):
+                fill(
+                    f"/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[{i+1}]/input", sms_code[i])
         click_on(
             "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div[3]/div/button[2]")
         fill("/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div[3]/div/button[2]",
@@ -141,18 +134,10 @@ class Epal():
         click_on(
             "/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/button[2]")
         sms_code = self.get_code(Larazia().get_sms(ID['number'])["msg"])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[1]/input", sms_code[0])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[2]/input", sms_code[1])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[3]/input", sms_code[2])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[4]/input", sms_code[3])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[5]/input", sms_code[4])
-        fill(
-            "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[6]/input", sms_code[5])
+        print(sms_code)
+        if sms_code :
+            for i in range(6): 
+                fill(f"/html/body/div[1]/div[1]/div/div[2]/div/div[2]/form/div/div/div/div/div/div/div[{i+1}]/input", sms_code[i])
         click_on(
             "/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[3]/div/button[2]")
         time.sleep(2)

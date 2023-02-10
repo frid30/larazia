@@ -53,9 +53,9 @@ class Lyft():
             "/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[10]/span/button/span/span")
         time.sleep(8)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
-        fill("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div/div[1]/div[1]/span/input", sms_code)
-        time.sleep(3)
-
+        print(sms_code)
+        if sms_code:
+            fill("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div/div[1]/div[1]/span/input", sms_code)
         fill("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div[1]/div[1]/div[1]/span/input", first_name)
         fill('/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div[3]/div[1]/div[1]/span/input', name)
         fill('/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[7]/div[1]/div[1]/span/input', email)
@@ -95,7 +95,9 @@ class Lyft():
         click_on("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[10]/span/button/span/span")
         time.sleep(4)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
-        fill( "/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div/div[1]/div[1]/span/input", sms_code)
+        print(sms_code)
+        if sms_code:
+            fill( "/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div/div[1]/div[1]/span/input", sms_code)
         click_on("/html/body/div[1]/div/span/main/div/div/div/div/div[3]/div[5]/span[1]/button")
         fill("/html/body/div[1]/div/span/main/div/div/div/div/form/div[5]/div[1]/div[1]/span/input", ID['email'])
         click_on("/html/body/div[1]/div/span/main/div/div/div/div/form/div[9]/span/button")
