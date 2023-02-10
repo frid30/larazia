@@ -59,7 +59,7 @@ class Heetch:
         sms_code = self.get_code(Larazia().get_sms(number)['msg'])
         print(sms_code)
         if sms_code:
-            for i in range(4):
+            for i in range(3):
                 fill(f'/html/body/div[1]/div/div/div[2]/div[2]/form/div[1]/div/div/div/input[{i+1}]',sms_code[i])
         driver.switch_to.new_window('tab')
         time.sleep(2)
