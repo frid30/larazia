@@ -22,19 +22,25 @@ options.add_argument("--no-sandbox")
 class Lyft():
     def __init__(self) -> None:
         pass
-    def get_code(msg):
+    def get_code(self,msg):
         return msg.split(" ")[-1]
     def lyft_up(self,driver,ID):
-        number,first_name,name,email = ID['phone_number'],ID['first_name'],ID['name'],ID['mail']
+        number,first_name,name,email = ID['phone_number'],ID['first_name'],ID['name'],ID['email']
         def click_on(xpath):
-            driver.implicitly_wait(1000)
-            driver.find_element(By.XPATH, xpath).click()
-            time.sleep(1)
+            try:
+                driver.implicitly_wait(10)
+                driver.find_element(By.XPATH, xpath).click()
+                time.sleep(1)
+            except Exception as e :
+                print(e,ID)
         def fill(xpath, value):
-            driver.implicitly_wait(1000)
-            searchButton = driver.find_element(By.XPATH, xpath)
-            searchButton.send_keys(value)
-            time.sleep(1)
+            try:
+                driver.implicitly_wait(10)
+                searchButton = driver.find_element(By.XPATH, xpath)
+                searchButton.send_keys(value)
+                time.sleep(1)
+            except Exception as e :
+                print(e,ID)
         driver.get("https://ride.lyft.com/")
         click_on("/html/body/div[1]/header/nav/a[2]/span/span")
         click_on(
@@ -45,31 +51,39 @@ class Lyft():
              div/div[1]/div/div[2]/div[1]/div[1]/span/input''', number.replace("44", ""))
         click_on(
             "/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[10]/span/button/span/span")
-        time.sleep(4)
+        time.sleep(8)
         sms_code = self.get_code(Larazia().get_sms(number)["msg"])
         fill("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div/div[1]/div[1]/span/input", sms_code)
+        time.sleep(3)
+
         fill("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div[1]/div[1]/div[1]/span/input", first_name)
         fill('/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[5]/div[3]/div[1]/div[1]/span/input', name)
         fill('/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[7]/div[1]/div[1]/span/input', email)
         click_on("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[10]/div[1]/span/input")
         click_on("/html/body/div[1]/div/span/main/div/div/div/div/form/div/div[13]/span/button/span")
         click_on("/html/body/div[1]/div[2]/div[1]/span/button")
-        click_on('/html/body/div[1]/header/nav/div[5]/button')
-        section = random.randint(1, 9)
-        click_on(f"/html/body/div[1]/div[1]/div/ul[1]/a[{section}]")
+        # click_on('/html/body/div[1]/header/nav/div[5]/button')
+        # section = random.randint(1, 9)
+        # click_on(f"/html/body/div[1]/div[1]/div/ul[1]/a[{section}]")
         time.sleep(4)
         driver.switch_to.new_window('tab')
     def lyft_in(self,driver,ID):
         number = ID['number']
         def click_on(xpath):
-            driver.implicitly_wait(1000)
-            driver.find_element(By.XPATH, xpath).click()
-            time.sleep(1)
+            try:
+                driver.implicitly_wait(10)
+                driver.find_element(By.XPATH, xpath).click()
+                time.sleep(1)
+            except Exception as e :
+                print(e,ID)
         def fill(xpath, value):
-            driver.implicitly_wait(1000)
-            searchButton = driver.find_element(By.XPATH, xpath)
-            searchButton.send_keys(value)
-            time.sleep(1)
+            try:
+                driver.implicitly_wait(10)
+                searchButton = driver.find_element(By.XPATH, xpath)
+                searchButton.send_keys(value)
+                time.sleep(1)
+            except Exception as e :
+                print(e,ID)
         driver.get("https://ride.lyft.com/")
         click_on("/html/body/div[1]/header/nav/a[2]/span/span")
         click_on(
@@ -87,6 +101,8 @@ class Lyft():
         click_on("/html/body/div[1]/div/span/main/div/div/div/div/form/div[9]/span/button")
         section = random.randint(1, 9)
         click_on(f"/html/body/div[1]/div[1]/div/ul[1]/a[{section}]")
+        driver.switch_to.new_window('tab')
+        time.sleep(2)
 
 #if __name__ == '__main__':
 #    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
