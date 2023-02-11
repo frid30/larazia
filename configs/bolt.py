@@ -92,8 +92,7 @@ class Bolt:
         time.sleep(1)
         fill("/html/body/div/div/div/div[2]/form/div/div/input[1]","+44")
         time.sleep(2)
-        fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",
-            ID['phone_number'].replace("44", ""))
+        fill("/html/body/div[2]/div/div/div[2]/form/div/div/input[2]",ID['phone_number'].replace("44", ""))
         time.sleep(2)
         click_on("/html/body/div[2]/div/div/div[2]/form/button")
         time.sleep(7)
