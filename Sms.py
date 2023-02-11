@@ -97,4 +97,4 @@ class Larazia:
         return None
 
 if __name__ == '__main__':
-   print(Larazia)
+   print(Larazia().get_sms('44741298739'))

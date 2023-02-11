@@ -101,7 +101,7 @@ class Bolt:
         print(sms_code)
         if sms_code:
             for i in range(3):
-                fill("/html/body/div[2]/div/div/div[2]/form/div/input[{i+1}]",sms_code[i])
+                fill(f"/html/body/div[2]/div/div/div[2]/form/div/input[{i+1}]",sms_code[i])
         time.sleep(2)
         click_on("/html/body/div[2]/div/div/div[1]/div[1]/button")
         click_on("/html/body/div[2]/div/div/div[2]/div[2]/div/div[1]/a[1]")
@@ -114,6 +114,8 @@ class Bolt:
 
 
 
-#if __name__=='__main__':
-#    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#    Bolt().bolt(driver)
+if __name__=='__main__':
+    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    ID = {'phone_number': '447412989223', 'first_name': 'Andrade',
+          'name': 'Raymond', 'password': '&6ch1bLBz$', 'email': 'andrade.raymond784@mynes.com'}
+    Bolt().bolt_in(driver,ID)

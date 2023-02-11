@@ -1,9 +1,4 @@
-import sys
-import os
-import time
-import random
-import requests
-import json
+import sys,os,time,random,requests,json,csv
 from bson import ObjectId
 p_1 = (os.path.dirname(os.path.abspath(__file__)))
 p_2 = os.path.dirname(p_1)
@@ -24,10 +19,11 @@ liste_domain = ["@uefia.com", "@mynes.com", "@hunnur.com",
 
 class Data():
     def __init__(self) -> None:
-        pass
+        self.proxies = [proxies[0] for proxies in csv.reader(open('proxies.txt','r'))]
 
     def refill_db(self):
         L = []
+        proxies = self.proxies
         f = open('numbers.txt', 'r')
         for number in f:
             first_name = Faker().name().split(' ')[0]
@@ -36,7 +32,8 @@ class Data():
                     'first_name': first_name,
                     'name': last_name,
                     'password': Faker().password(),
-                    'email': f"{first_name.lower()}.{last_name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}"}
+                    'email': f"{first_name.lower()}.{last_name.lower()}{random.randint(100,3000)}{random.choice(liste_domain)}",
+                    "proxy_ID":random.choice(proxies)}
             #data |= {s.split('.')[0]: 0 for s in os.listdir('configs')}
             print(data)
             #r = requests.get('https://apidatabase.herokuapp.com/insert',data=data)
@@ -45,5 +42,8 @@ class Data():
         r = json.loads(requests.get(
             'https://apidatabase.herokuapp.com/get').text)
         return r
-
-
+L = list(IDs.find())
+#for i in range(len(L)):
+#    IDs.update_one({'_id':L[i]['_id']},{'$set':{'proxy':Data().proxies[i]}})
+for i in IDs.find():
+    print(i)
